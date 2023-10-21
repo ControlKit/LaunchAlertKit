@@ -11,7 +11,7 @@ import UIKit
 public class LaunchAlertView_Popover2: UIView, LaunchAlertViewProtocol {
     var config: LaunchAlertViewConfig
     var viewModel: LaunchAlertViewModel
-    weak var delegate: LaunchAlertDelegate?
+    weak public var delegate: LaunchAlertDelegate?
     lazy var updateButton: UIButton = {
         let updateButton = UIButton()
         updateButton.backgroundColor = config.updateButtonBackColor
