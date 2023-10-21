@@ -13,7 +13,7 @@ public class LaunchAlertViewConfig {
     public var updateButtonNortmalTitle: String = "Update New Version"
     public var updateButtonSelectedTitle: String = "Update New Version"
     public var updateButtonImage: UIImage = UIImage(named: "") ?? UIImage()
-    public var contentViewBackColor: UIColor = .white
+    public var contentViewBackColor: UIColor = UIColor(r: 0, g: 0, b: 0, a: 0.8)
     public var popupViewBackColor: UIColor = .black
     public var popupViewCornerRadius: CGFloat = 15.0
     public var contentBackGroundImage = UIImage()

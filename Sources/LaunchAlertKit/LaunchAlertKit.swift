@@ -10,7 +10,7 @@ public class LaunchAlertKit: Alertable {
         self.alertService = alertService
     }
     
-    public func configure(rootView: UIViewController,
+    public func configure(root: UIViewController,
                           modalPresentationStyle: UIModalPresentationStyle = .fullScreen,
                           config: AlertServiceConfig = AlertServiceConfig()) async {
         Task {
@@ -23,7 +23,7 @@ public class LaunchAlertKit: Alertable {
                 let vc = LaunchAlertViewController(viewModel: viewModel,
                                                    config: config)
                 vc.modalPresentationStyle = modalPresentationStyle
-                rootView.present(vc, animated: true)
+                root.present(vc, animated: true)
             }
         }
     }
