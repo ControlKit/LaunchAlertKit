@@ -14,7 +14,7 @@ class LaunchAlertViewController: UIViewController {
     init(viewModel: LaunchAlertViewModel, config: AlertServiceConfig) {
         self.viewModel = viewModel
         self.config = config
-        super.init()
+        super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
