@@ -8,28 +8,28 @@
 import Foundation
 import UIKit
 
-public extension NSObject {
+extension NSObject {
     @objc static
     var nameOfClass: String {
         return NSStringFromClass(self).components(separatedBy: ".").last!
     }
 }
 
-public extension UITableViewCell {
+extension UITableViewCell {
     @objc
     static func reuseIdentifier() -> String {
         return self.nameOfClass
     }
 }
 
-public extension UICollectionViewCell {
+extension UICollectionViewCell {
     @objc
     static func reuseIdentifier() -> String {
         return self.nameOfClass
     }
 }
 
-public extension UIView {
+extension UIView {
     func setCurvedView(cornerRadius: CGFloat,
                        borderWidth: CGFloat , 
                        borderColor: UIColor,
@@ -93,7 +93,7 @@ public extension UIView {
     }
 }
 
-public extension UIImage {
+extension UIImage {
     func imageWithColor(color: UIColor) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(self.size, false, self.scale)
         color.setFill()
