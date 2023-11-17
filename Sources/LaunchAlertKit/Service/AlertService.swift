@@ -12,7 +12,7 @@ public class AlertService: AlertServiceProtocol {
     public func getAlert(request: AlertRequest) async throws -> AlertResponse {
         do {
             guard let url = URL(string: request.route) else {
-                return AlertResponse(forceAlert: false)
+                return AlertResponse(hasAlert: false)
             }
             var request = URLRequest(url: url)
             request.setValue(
@@ -25,11 +25,11 @@ public class AlertService: AlertServiceProtocol {
                 return AlertResponse
             } else {
                 print("Invalid Response")
-                return AlertResponse(forceAlert: false)
+                return AlertResponse(hasAlert: false)
             }
         } catch {
             print("Failed to Send POST Request \(error)")
-            return AlertResponse(forceAlert: false)
+            return AlertResponse(hasAlert: false)
         }
     }
 }

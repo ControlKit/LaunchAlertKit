@@ -11,7 +11,8 @@ let package = Package(
     products: [
         .library(
             name: "LaunchAlertKit",
-            targets: ["LaunchAlertKit"]),
+            targets: ["LaunchAlertKit"]
+        ),
     ],
     targets: [
         .target(
@@ -20,6 +21,8 @@ let package = Package(
         ),
         .testTarget(
             name: "LaunchAlertKitTests",
-            dependencies: ["LaunchAlertKit"]),
+            dependencies: ["LaunchAlertKit"],
+            resources: [.process("Resources")]
+        ),
     ]
 )

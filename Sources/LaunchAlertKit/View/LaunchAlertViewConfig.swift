@@ -10,36 +10,45 @@ import UIKit
 public class LaunchAlertViewConfig {
     public init() {}
     public var style: LaunchAlertViewStyle = .fullscreen1
-    public var updateButtonNortmalTitle: String = "Update New Version"
-    public var updateButtonSelectedTitle: String = "Update New Version"
-    public var updateButtonImage: UIImage = UIImage(named: "") ?? UIImage()
+    
     public var contentViewBackColor: UIColor = UIColor(r: 0, g: 0, b: 0, a: 0.8)
+    public var contentBackGroundImage = UIImage()
     public var popupViewBackColor: UIColor = .black
     public var popupViewCornerRadius: CGFloat = 15.0
-    public var contentBackGroundImage = UIImage()
-    public var updateImageType: ImageType = .spaceship1
-    public var updateImage: UIImage?
-    public var updateImageColor: UIColor?
-    public var updateButtonFont = UIFont.systemFont(ofSize: 12, weight: .medium)
-    public var headerTitleFont = UIFont.systemFont(ofSize: 13, weight: .bold)
-    public var headerTitle = "It's time to update"
-    public var headerTitleColor: UIColor = .black
-    public var descriptionFont = UIFont.systemFont(ofSize: 12, weight: .medium)
+    
+    public var imageType: ImageType = .alerticon1
+    public var image: UIImage?
+    public var imageColor: UIColor? = .orange
+    
+    public var titleFont = UIFont.systemFont(ofSize: 13, weight: .bold)
+    public var title = "It's time to update"
+    public var titleColor: UIColor = .orange
+    
+    public var descriptionFont = UIFont.systemFont(ofSize: 14, weight: .medium)
     public var descriptionText = "It's time to update The version you are using is old, need to update the latest version in order to experience new features."
     public var descriptionTextColor: UIColor = .gray
-    public var versionFont = UIFont.systemFont(ofSize: 10, weight: .bold)
-    public var versionText = "Up to 12.349 version Apr 2024."
-    public var versionTextColor: UIColor = .gray
-    public var updateButtonBackColor: UIColor = .blue
-    public var lineColor: UIColor = .lightGray
-    public var updateButtonTitleColor: UIColor = .white
-    public var updateButtonCornerRadius: CGFloat = 20.0
-    public var updateButtonBorderWidth: CGFloat = 0.0
-    public var updateButtonBorderColor: UIColor = .clear
+    
+    public var buttonFont = UIFont.systemFont(ofSize: 13, weight: .bold)
+    public var buttonNortmalTitle: String = "I understood"
+    public var buttonSelectedTitle: String = "I understood"
+    public var buttonBackColor: UIColor = .orange
+    public var buttonTitleColor: UIColor = .white
+    public var buttonCornerRadius: CGFloat = 20.0
+    public var buttonBorderWidth: CGFloat = 0.0
+    public var buttonBorderColor: UIColor = .clear
+    
+    public var closeButtonFont = UIFont.systemFont(ofSize: 11, weight: .medium)
+    public var closeBottonNortmalTitle: String = "Close"
+    public var closeButtonBackColor: UIColor = .clear
+    public var closeButtonTitleColor: UIColor = .orange
+    public var closeButtonCornerRadius: CGFloat = 20.0
+    public var closeButtonBorderWidth: CGFloat = 0.0
+    public var closeButtonBorderColor: UIColor = .clear
 }
 
 public enum ImageType: String {
-    case spaceship1 = "update-icon"
-    case spaceship2 = "spaceship"
+    case alerticon1 = "alert1"
+    case alerticon2 = "alert2"
+    case alerticon3 = "alert3"
     case gear = "gear"
 }

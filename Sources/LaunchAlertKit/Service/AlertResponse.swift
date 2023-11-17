@@ -9,10 +9,11 @@ import Foundation
 
 public struct AlertResponse: Codable {
     public var version: String?
-    public let forceAlert: Bool
+    public var closeButtonTitle: String?
     public var title: String?
     public var description: String?
     public var iconUrl: String?
     public var linkUrl: String?
     public var buttonTitle: String?
+    public var hasAlert: Bool = false
 }

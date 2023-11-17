@@ -12,20 +12,19 @@ public class LaunchAlertView_FullScreen2: UIView, LaunchAlertViewProtocol {
     var config: LaunchAlertViewConfig
     var viewModel: LaunchAlertViewModel
     weak public var delegate: LaunchAlertDelegate?
-    lazy var updateButton: UIButton = {
-        let updateButton = UIButton()
-        updateButton.backgroundColor = config.updateButtonBackColor
-        updateButton.titleLabel?.textColor = config.updateButtonTitleColor
-        updateButton.setTitle(config.updateButtonNortmalTitle, for: .normal)
-        updateButton.setTitle(config.updateButtonSelectedTitle, for: .selected)
-        updateButton.setImage(config.updateButtonImage, for: .selected)
-        updateButton.setCurvedView(cornerRadius: config.updateButtonCornerRadius,
-                                   borderWidth: config.updateButtonBorderWidth,
-                                   borderColor: config.updateButtonBorderColor)
-        updateButton.addTarget(self, action: #selector(openLink), for: .touchUpInside)
-        updateButton.titleLabel?.font = config.updateButtonFont
-        updateButton.setTitleColor(config.updateButtonTitleColor, for: .normal)
-        return updateButton
+    lazy var button: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = config.buttonBackColor
+        button.titleLabel?.textColor = config.buttonTitleColor
+        button.setTitle(config.buttonNortmalTitle, for: .normal)
+        button.setTitle(config.buttonSelectedTitle, for: .selected)
+        button.setCurvedView(cornerRadius: config.buttonCornerRadius,
+                             borderWidth: config.buttonBorderWidth,
+                             borderColor: config.buttonBorderColor)
+        button.addTarget(self, action: #selector(openLink), for: .touchUpInside)
+        button.titleLabel?.font = config.buttonFont
+        button.setTitleColor(config.buttonTitleColor, for: .normal)
+        return button
     }()
     
     lazy var contentView: UIView = {
@@ -40,34 +39,34 @@ public class LaunchAlertView_FullScreen2: UIView, LaunchAlertViewProtocol {
         return contentBackGroundImageView
     }()
     
-    lazy var updateImageView: UIImageView = {
-        let updateImageView = UIImageView()
-        if let color = config.updateImageColor {
-            if let img = config.updateImage?.imageWithColor(color: color) {
-                updateImageView.image = img
+    lazy var imageView: UIImageView = {
+        let imageView = UIImageView()
+        if let color = config.imageColor {
+            if let img = config.image?.imageWithColor(color: color) {
+                imageView.image = img
             } else {
-                let img = ImageHelper.image(config.updateImageType.rawValue)?.imageWithColor(color: color)
-                updateImageView.image = img
+                let img = ImageHelper.image(config.imageType.rawValue)?.imageWithColor(color: color)
+                imageView.image = img
             }
         } else {
-            if let img = config.updateImage {
-                updateImageView.image = img
+            if let img = config.image {
+                imageView.image = img
             } else {
-                let img = ImageHelper.image(config.updateImageType.rawValue)
-                updateImageView.image = img
+                let img = ImageHelper.image(config.imageType.rawValue)
+                imageView.image = img
             }
         }
-        return updateImageView
+        return imageView
     }()
-      
-    lazy var headerTitle: UILabel = {
-        let headerTitle = UILabel()
-        headerTitle.font = config.headerTitleFont
-        headerTitle.text = config.headerTitle
-        headerTitle.textColor = config.headerTitleColor
-        headerTitle.textAlignment = .center
-        headerTitle.numberOfLines = 0
-        return headerTitle
+    
+    lazy var title: UILabel = {
+        let title = UILabel()
+        title.font = config.titleFont
+        title.text = config.title
+        title.textColor = config.titleColor
+        title.textAlignment = .center
+        title.numberOfLines = 0
+        return title
     }()
     
     lazy var descriptionLabel: UILabel = {
@@ -80,20 +79,19 @@ public class LaunchAlertView_FullScreen2: UIView, LaunchAlertViewProtocol {
         return descriptionLabel
     }()
     
-    lazy var versionLabel: UILabel = {
-        let versionLabel = UILabel()
-        versionLabel.font = config.versionFont
-        versionLabel.text = config.versionText
-        versionLabel.textColor = config.versionTextColor
-        versionLabel.textAlignment = .center
-        versionLabel.numberOfLines = 0
-        return versionLabel
-    }()
-    
-    lazy var line: UIView = {
-        let line = UIView()
-        line.backgroundColor = config.lineColor
-        return line
+    lazy var closeButton: UIButton = {
+        let closeButton = UIButton()
+        closeButton.backgroundColor = config.buttonBackColor
+        closeButton.titleLabel?.textColor = config.buttonTitleColor
+        closeButton.setTitle(config.buttonNortmalTitle, for: .normal)
+        closeButton.setTitle(config.buttonSelectedTitle, for: .selected)
+        closeButton.setCurvedView(cornerRadius: config.buttonCornerRadius,
+                                  borderWidth: config.buttonBorderWidth,
+                                  borderColor: config.buttonBorderColor)
+        closeButton.addTarget(self, action: #selector(openLink), for: .touchUpInside)
+        closeButton.titleLabel?.font = config.buttonFont
+        closeButton.setTitleColor(config.buttonTitleColor, for: .normal)
+        return closeButton
     }()
     
     public override func layoutSubviews() {
@@ -102,12 +100,11 @@ public class LaunchAlertView_FullScreen2: UIView, LaunchAlertViewProtocol {
     }
     
     public required init(viewModel: LaunchAlertViewModel,
-                         config: LaunchAlertViewConfig = LaunchAlertViewConfig()) {
+                         config: LaunchAlertViewConfig = FullScreen2LaunchAlertViewConfig()) {
         self.config = config
         self.viewModel = viewModel
-        if let title = viewModel.response.title { self.config.headerTitle = title }
-        if let buttonTitle = viewModel.response.buttonTitle { self.config.updateButtonNortmalTitle = buttonTitle }
-        if let version = viewModel.response.version { self.config.versionText = version }
+        if let title = viewModel.response.title { self.config.title = title }
+        if let buttonTitle = viewModel.response.buttonTitle { self.config.buttonNortmalTitle = buttonTitle }
         if let description = viewModel.response.description { self.config.descriptionText = description }
         super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         setup()
@@ -126,19 +123,15 @@ public class LaunchAlertView_FullScreen2: UIView, LaunchAlertViewProtocol {
         contentView.fixInView(self)
         contentView.addSubview(contentBackGroundImageView)
         contentBackGroundImageView.fixInView(contentView)
-        contentView.addSubview(updateImageView)
-        contentView.addSubview(headerTitle)
+        contentView.addSubview(imageView)
+        contentView.addSubview(title)
         contentView.addSubview(descriptionLabel)
-        contentView.addSubview(line)
-        contentView.addSubview(updateButton)
-        contentView.addSubview(versionLabel)
+        contentView.addSubview(button)
         commonInit()
         setUpdateImageViewConstraint()
         setTitleViewConstraint()
         setDescriptionConstraint()
-        setLineConstraint()
         setButtonConstraint()
-        setVersionConstraint()
     }
     
     @objc
@@ -148,9 +141,9 @@ public class LaunchAlertView_FullScreen2: UIView, LaunchAlertViewProtocol {
     }
     
     public func setUpdateImageViewConstraint() {
-        updateImageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint(
-            item: updateImageView,
+            item: imageView,
             attribute: .centerX,
             relatedBy: .equal,
             toItem: contentView,
@@ -158,7 +151,7 @@ public class LaunchAlertView_FullScreen2: UIView, LaunchAlertViewProtocol {
             multiplier: 1,
             constant: 0).isActive = true
         NSLayoutConstraint(
-            item: updateImageView,
+            item: imageView,
             attribute: .centerY,
             relatedBy: .equal,
             toItem: contentView,
@@ -166,7 +159,7 @@ public class LaunchAlertView_FullScreen2: UIView, LaunchAlertViewProtocol {
             multiplier: 1,
             constant: -150).isActive = true
         NSLayoutConstraint(
-            item: updateImageView,
+            item: imageView,
             attribute: .width,
             relatedBy: .equal,
             toItem: nil,
@@ -174,7 +167,7 @@ public class LaunchAlertView_FullScreen2: UIView, LaunchAlertViewProtocol {
             multiplier: 1,
             constant: 191).isActive = true
         NSLayoutConstraint(
-            item: updateImageView,
+            item: imageView,
             attribute: .height,
             relatedBy: .equal,
             toItem: nil,
@@ -184,9 +177,9 @@ public class LaunchAlertView_FullScreen2: UIView, LaunchAlertViewProtocol {
     }
     
     public func setTitleViewConstraint() {
-        headerTitle.translatesAutoresizingMaskIntoConstraints = false
+        title.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint(
-            item: headerTitle,
+            item: title,
             attribute: .centerX,
             relatedBy: .equal,
             toItem: contentView,
@@ -194,20 +187,20 @@ public class LaunchAlertView_FullScreen2: UIView, LaunchAlertViewProtocol {
             multiplier: 1,
             constant: 0).isActive = true
         NSLayoutConstraint(
-            item: headerTitle,
+            item: title,
             attribute: .top,
             relatedBy: .equal,
-            toItem: updateImageView,
+            toItem: imageView,
             attribute: .bottom,
             multiplier: 1,
             constant: 31).isActive = true
         
-        headerTitle.leadingAnchor.constraint(
+        title.leadingAnchor.constraint(
             equalTo: contentView.leadingAnchor,
             constant: 24).isActive = true
         
         NSLayoutConstraint(
-            item: headerTitle,
+            item: title,
             attribute: .height,
             relatedBy: .greaterThanOrEqual,
             toItem: nil,
@@ -230,7 +223,7 @@ public class LaunchAlertView_FullScreen2: UIView, LaunchAlertViewProtocol {
             item: descriptionLabel,
             attribute: .top,
             relatedBy: .equal,
-            toItem: headerTitle,
+            toItem: title,
             attribute: .bottom,
             multiplier: 1,
             constant: 16).isActive = true
@@ -249,41 +242,10 @@ public class LaunchAlertView_FullScreen2: UIView, LaunchAlertViewProtocol {
             constant: 50).isActive = true
     }
     
-    public func setLineConstraint() {
-        line.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint(
-            item: line,
-            attribute: .centerX,
-            relatedBy: .equal,
-            toItem: contentView,
-            attribute: .centerX,
-            multiplier: 1,
-            constant: 0).isActive = true
-        NSLayoutConstraint(
-            item: line,
-            attribute: .bottom,
-            relatedBy: .equal,
-            toItem: updateButton,
-            attribute: .top,
-            multiplier: 1,
-            constant: -10).isActive = true
-        line.leadingAnchor.constraint(
-            equalTo: contentView.leadingAnchor,
-            constant: 24).isActive = true
-        NSLayoutConstraint(
-            item: line,
-            attribute: .height,
-            relatedBy: .equal,
-            toItem: nil,
-            attribute: .notAnAttribute,
-            multiplier: 1,
-            constant: 1).isActive = true
-    }
-    
     public func setButtonConstraint() {
-        updateButton.translatesAutoresizingMaskIntoConstraints = false
+        button.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint(
-            item: updateButton,
+            item: button,
             attribute: .centerX,
             relatedBy: .equal,
             toItem: contentView,
@@ -291,15 +253,15 @@ public class LaunchAlertView_FullScreen2: UIView, LaunchAlertViewProtocol {
             multiplier: 1,
             constant: 0).isActive = true
         NSLayoutConstraint(
-            item: updateButton,
+            item: button,
             attribute: .bottom,
             relatedBy: .equal,
-            toItem: versionLabel,
-            attribute: .top,
+            toItem: contentView,
+            attribute: .bottom,
             multiplier: 1,
-            constant: -10).isActive = true
+            constant: -60).isActive = true
         NSLayoutConstraint(
-            item: updateButton,
+            item: button,
             attribute: .width,
             relatedBy: .equal,
             toItem: nil,
@@ -307,7 +269,7 @@ public class LaunchAlertView_FullScreen2: UIView, LaunchAlertViewProtocol {
             multiplier: 1,
             constant: 222).isActive = true
         NSLayoutConstraint(
-            item: updateButton,
+            item: button,
             attribute: .height,
             relatedBy: .equal,
             toItem: nil,
@@ -315,35 +277,11 @@ public class LaunchAlertView_FullScreen2: UIView, LaunchAlertViewProtocol {
             multiplier: 1,
             constant: 56).isActive = true
     }
-    
-    public func setVersionConstraint() {
-        versionLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint(
-            item: versionLabel,
-            attribute: .centerX,
-            relatedBy: .equal,
-            toItem: contentView,
-            attribute: .centerX,
-            multiplier: 1,
-            constant: 0).isActive = true
-        NSLayoutConstraint(
-            item: versionLabel,
-            attribute: .bottom,
-            relatedBy: .equal,
-            toItem: contentView,
-            attribute: .bottom,
-            multiplier: 1,
-            constant: -52).isActive = true
-        versionLabel.leadingAnchor.constraint(
-            equalTo: contentView.leadingAnchor,
-            constant: 24).isActive = true
-        NSLayoutConstraint(
-            item: versionLabel,
-            attribute: .height,
-            relatedBy: .equal,
-            toItem: nil,
-            attribute: .notAnAttribute,
-            multiplier: 1,
-            constant: 20).isActive = true
+}
+
+public class FullScreen2LaunchAlertViewConfig: LaunchAlertViewConfig {
+    public override init() {
+        super.init()
+        style = .fullscreen2
     }
 }

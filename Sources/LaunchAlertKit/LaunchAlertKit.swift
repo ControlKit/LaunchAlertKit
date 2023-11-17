@@ -16,13 +16,17 @@ public class LaunchAlertKit: Alertable {
         Task {
             let request = AlertRequest(appId: config.appId,
                                        version: config.version,
-                                       route: config.route)
+                                       route: config.route,
+                                       language: config.language)
             let response = try await self.getAlert(request: request)
             let viewModel = DefaultLaunchAlertViewModel(response: response)
             DispatchQueue.main.async {
                 let vc = LaunchAlertViewController(viewModel: viewModel,
                                                    config: config)
                 vc.modalPresentationStyle = modalPresentationStyle
+                if config.viewConfig.style == .popover1 {
+                    vc.view.backgroundColor = .clear
+                }
                 root.present(vc, animated: true)
             }
         }
