@@ -24,8 +24,8 @@ public class LaunchAlertKit: Alertable {
                 let vc = LaunchAlertViewController(viewModel: viewModel,
                                                    config: config)
                 vc.modalPresentationStyle = modalPresentationStyle
-                if config.viewConfig.style == .popover1 {
-                    vc.view.backgroundColor = .clear
+                if config.viewConfig.style == .popover1 || config.viewConfig.style == .popover2 {
+                    vc.modalPresentationStyle = .overCurrentContext
                 }
                 root.present(vc, animated: true)
             }
