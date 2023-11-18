@@ -17,8 +17,8 @@ public class LaunchAlertViewConfig {
     public var popupViewCornerRadius: CGFloat = 15.0
     
     public var imageType: ImageType = .alerticon1
-    public var image: UIImage?
-    public var imageColor: UIColor? = .orange
+    public var image: String?
+    public var imageColor: UIColor?
     
     public var titleFont = UIFont.systemFont(ofSize: 13, weight: .bold)
     public var title = "It's time to update"

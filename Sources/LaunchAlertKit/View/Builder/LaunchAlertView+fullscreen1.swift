@@ -45,24 +45,30 @@ public class LaunchAlertView_FullScreen1: UIView, LaunchAlertViewProtocol {
         return contentBackGroundImageView
     }()
     
-    lazy var updateImageView: UIImageView = {
-        let updateImageView = UIImageView()
-        if let color = config.imageColor {
-            if let img = config.image?.imageWithColor(color: color) {
-                updateImageView.image = img
+    lazy var iconImageView: UIImageView = {
+        let imageView = UIImageView()
+        if let color = config.imageColor, let image = config.image {
+            if image.contains("http"), let url = URL(string: config.image!) {
+                imageView.networkImage(from: url)
+            } else if let img = UIImage(named: image)?.imageWithColor(color: color) {
+                imageView.image = img
             } else {
                 let img = ImageHelper.image(config.imageType.rawValue)?.imageWithColor(color: color)
-                updateImageView.image = img
+                imageView.image = img
             }
         } else {
             if let img = config.image {
-                updateImageView.image = img
+                if img.contains("http"), let url = URL(string: config.image!) {
+                    imageView.networkImage(from: url)
+                } else {
+                    imageView.image = UIImage(named: img)
+                }
             } else {
                 let img = ImageHelper.image(config.imageType.rawValue)
-                updateImageView.image = img
+                imageView.image = img
             }
         }
-        return updateImageView
+        return imageView
     }()
     
     lazy var headerTitle: UILabel = {
@@ -114,7 +120,7 @@ public class LaunchAlertView_FullScreen1: UIView, LaunchAlertViewProtocol {
         contentView.fixInView(self)
         contentView.addSubview(contentBackGroundImageView)
         contentBackGroundImageView.fixInView(contentView)
-        contentView.addSubview(updateImageView)
+        contentView.addSubview(iconImageView)
         contentView.addSubview(button)
         contentView.addSubview(descriptionLabel)
         commonInit()
@@ -130,9 +136,9 @@ public class LaunchAlertView_FullScreen1: UIView, LaunchAlertViewProtocol {
     }
     
     public func setUpdateImageViewConstraint() {
-        updateImageView.translatesAutoresizingMaskIntoConstraints = false
+        iconImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint(
-            item: updateImageView,
+            item: iconImageView,
             attribute: .centerX,
             relatedBy: .equal,
             toItem: contentView,
@@ -140,7 +146,7 @@ public class LaunchAlertView_FullScreen1: UIView, LaunchAlertViewProtocol {
             multiplier: 1,
             constant: 0).isActive = true
         NSLayoutConstraint(
-            item: updateImageView,
+            item: iconImageView,
             attribute: .centerY,
             relatedBy: .equal,
             toItem: contentView,
@@ -148,7 +154,7 @@ public class LaunchAlertView_FullScreen1: UIView, LaunchAlertViewProtocol {
             multiplier: 1,
             constant: -150).isActive = true
         NSLayoutConstraint(
-            item: updateImageView,
+            item: iconImageView,
             attribute: .width,
             relatedBy: .equal,
             toItem: nil,
@@ -156,7 +162,7 @@ public class LaunchAlertView_FullScreen1: UIView, LaunchAlertViewProtocol {
             multiplier: 1,
             constant: 191).isActive = true
         NSLayoutConstraint(
-            item: updateImageView,
+            item: iconImageView,
             attribute: .height,
             relatedBy: .equal,
             toItem: nil,
@@ -179,7 +185,7 @@ public class LaunchAlertView_FullScreen1: UIView, LaunchAlertViewProtocol {
             item: descriptionLabel,
             attribute: .top,
             relatedBy: .equal,
-            toItem: updateImageView,
+            toItem: iconImageView,
             attribute: .bottom,
             multiplier: 1,
             constant: 56).isActive = true

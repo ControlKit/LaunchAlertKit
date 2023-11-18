@@ -41,8 +41,10 @@ public class LaunchAlertView_FullScreen2: UIView, LaunchAlertViewProtocol {
     
     lazy var imageView: UIImageView = {
         let imageView = UIImageView()
-        if let color = config.imageColor {
-            if let img = config.image?.imageWithColor(color: color) {
+        if let color = config.imageColor, let image = config.image {
+            if image.contains("http"), let url = URL(string: config.image!) {
+                imageView.networkImage(from: url)
+            } else if let img = UIImage(named: image)?.imageWithColor(color: color) {
                 imageView.image = img
             } else {
                 let img = ImageHelper.image(config.imageType.rawValue)?.imageWithColor(color: color)
@@ -50,7 +52,11 @@ public class LaunchAlertView_FullScreen2: UIView, LaunchAlertViewProtocol {
             }
         } else {
             if let img = config.image {
-                imageView.image = img
+                if img.contains("http"), let url = URL(string: config.image!) {
+                    imageView.networkImage(from: url)
+                } else {
+                    imageView.image = UIImage(named: img)
+                }
             } else {
                 let img = ImageHelper.image(config.imageType.rawValue)
                 imageView.image = img

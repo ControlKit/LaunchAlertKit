@@ -47,24 +47,30 @@ public class LaunchAlertView_Popover2: UIView, LaunchAlertViewProtocol {
         return contentBackGroundImageView
     }()
     
-    lazy var updateImageView: UIImageView = {
-        let updateImageView = UIImageView()
-        if let color = config.imageColor {
-            if let img = config.image?.imageWithColor(color: color) {
-                updateImageView.image = img
+    lazy var iconImageView: UIImageView = {
+        let imageView = UIImageView()
+        if let color = config.imageColor, let image = config.image {
+            if image.contains("http"), let url = URL(string: config.image!) {
+                imageView.networkImage(from: url)
+            } else if let img = UIImage(named: image)?.imageWithColor(color: color) {
+                imageView.image = img
             } else {
                 let img = ImageHelper.image(config.imageType.rawValue)?.imageWithColor(color: color)
-                updateImageView.image = img
+                imageView.image = img
             }
         } else {
             if let img = config.image {
-                updateImageView.image = img
+                if img.contains("http"), let url = URL(string: config.image!) {
+                    imageView.networkImage(from: url)
+                } else {
+                    imageView.image = UIImage(named: img)
+                }
             } else {
                 let img = ImageHelper.image(config.imageType.rawValue)
-                updateImageView.image = img
+                imageView.image = img
             }
         }
-        return updateImageView
+        return imageView
     }()
     
     lazy var headerTitle: UILabel = {
@@ -112,7 +118,7 @@ public class LaunchAlertView_Popover2: UIView, LaunchAlertViewProtocol {
         contentView.addSubview(contentBackGroundImageView)
         contentBackGroundImageView.fixInView(contentView)
         addSubview(popupView)
-        popupView.addSubview(updateImageView)
+        popupView.addSubview(iconImageView)
         popupView.addSubview(headerTitle)
         popupView.addSubview(descriptionLabel)
         popupView.addSubview(button)
@@ -161,9 +167,9 @@ public class LaunchAlertView_Popover2: UIView, LaunchAlertViewProtocol {
     }
     
     public func setUpdateImageViewConstraint() {
-        updateImageView.translatesAutoresizingMaskIntoConstraints = false
+        iconImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint(
-            item: updateImageView,
+            item: iconImageView,
             attribute: .centerX,
             relatedBy: .equal,
             toItem: popupView,
@@ -171,7 +177,7 @@ public class LaunchAlertView_Popover2: UIView, LaunchAlertViewProtocol {
             multiplier: 1,
             constant: 0).isActive = true
         NSLayoutConstraint(
-            item: updateImageView,
+            item: iconImageView,
             attribute: .top,
             relatedBy: .equal,
             toItem: popupView,
@@ -179,7 +185,7 @@ public class LaunchAlertView_Popover2: UIView, LaunchAlertViewProtocol {
             multiplier: 1,
             constant: 66).isActive = true
         NSLayoutConstraint(
-            item: updateImageView,
+            item: iconImageView,
             attribute: .width,
             relatedBy: .equal,
             toItem: nil,
@@ -187,7 +193,7 @@ public class LaunchAlertView_Popover2: UIView, LaunchAlertViewProtocol {
             multiplier: 1,
             constant: 64).isActive = true
         NSLayoutConstraint(
-            item: updateImageView,
+            item: iconImageView,
             attribute: .height,
             relatedBy: .equal,
             toItem: nil,
@@ -210,7 +216,7 @@ public class LaunchAlertView_Popover2: UIView, LaunchAlertViewProtocol {
             item: headerTitle,
             attribute: .top,
             relatedBy: .equal,
-            toItem: updateImageView,
+            toItem: iconImageView,
             attribute: .bottom,
             multiplier: 1,
             constant: 41).isActive = true
