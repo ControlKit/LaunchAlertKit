@@ -44,6 +44,8 @@ public class LaunchAlertViewConfig {
     public var closeButtonCornerRadius: CGFloat = 20.0
     public var closeButtonBorderWidth: CGFloat = 0.0
     public var closeButtonBorderColor: UIColor = .clear
+    public var closeButtonImage: UIImage?
+    public var closeButtonImageColor: UIColor = .orange
 }
 
 public enum ImageType: String {

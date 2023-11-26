@@ -34,6 +34,14 @@ public class LaunchAlertView_Popover2: UIView, LaunchAlertViewProtocol {
         return contentView
     }()
     
+    lazy var closeButton: UIButton = {
+        let img = closeButtonIcon(color: config.closeButtonImageColor,
+                                  image: config.closeButtonImage)
+        button.setImage(img, for: .normal)
+        button.addTarget(self, action: #selector(dismiss), for: .touchUpInside)
+        return button
+    }()
+    
     lazy var popupView: UIView = {
         let popupView = UIView()
         popupView.backgroundColor = config.popupViewBackColor
@@ -49,27 +57,10 @@ public class LaunchAlertView_Popover2: UIView, LaunchAlertViewProtocol {
     
     lazy var iconImageView: UIImageView = {
         let imageView = UIImageView()
-        if let color = config.imageColor, let image = config.image {
-            if image.contains("http"), let url = URL(string: config.image!) {
-                imageView.networkImage(from: url)
-            } else if let img = UIImage(named: image)?.imageWithColor(color: color) {
-                imageView.image = img
-            } else {
-                let img = ImageHelper.image(config.imageType.rawValue)?.imageWithColor(color: color)
-                imageView.image = img
-            }
-        } else {
-            if let img = config.image {
-                if img.contains("http"), let url = URL(string: config.image!) {
-                    imageView.networkImage(from: url)
-                } else {
-                    imageView.image = UIImage(named: img)
-                }
-            } else {
-                let img = ImageHelper.image(config.imageType.rawValue)
-                imageView.image = img
-            }
-        }
+        setIcon(color: config.imageColor,
+                image: config.image,
+                imageType: config.imageType,
+                imageView: imageView)
         return imageView
     }()
     
@@ -132,6 +123,11 @@ public class LaunchAlertView_Popover2: UIView, LaunchAlertViewProtocol {
     @objc
     func openLink() {
         viewModel.openLink()
+        delegate?.dismiss()
+    }
+    
+    @objc
+    func dismiss() {
         delegate?.dismiss()
     }
     

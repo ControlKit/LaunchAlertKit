@@ -27,6 +27,14 @@ public class LaunchAlertView_Popover1: UIView, LaunchAlertViewProtocol {
         return button
     }()
     
+    lazy var closeButton: UIButton = {
+        let img = closeButtonIcon(color: config.closeButtonImageColor,
+                                  image: config.closeButtonImage)
+        button.setImage(img, for: .normal)
+        button.addTarget(self, action: #selector(dismiss), for: .touchUpInside)
+        return button
+    }()
+    
     lazy var contentView: UIView = {
         let contentView = UIView()
         contentView.backgroundColor = config.contentViewBackColor
@@ -49,27 +57,10 @@ public class LaunchAlertView_Popover1: UIView, LaunchAlertViewProtocol {
     
     lazy var iconImageView: UIImageView = {
         let imageView = UIImageView()
-        if let color = config.imageColor, let image = config.image {
-            if image.contains("http"), let url = URL(string: config.image!) {
-                imageView.networkImage(from: url)
-            } else if let img = UIImage(named: image)?.imageWithColor(color: color) {
-                imageView.image = img
-            } else {
-                let img = ImageHelper.image(config.imageType.rawValue)?.imageWithColor(color: color)
-                imageView.image = img
-            }
-        } else {
-            if let img = config.image {
-                if img.contains("http"), let url = URL(string: config.image!) {
-                    imageView.networkImage(from: url)
-                } else {
-                    imageView.image = UIImage(named: img)
-                }
-            } else {
-                let img = ImageHelper.image(config.imageType.rawValue)
-                imageView.image = img
-            }
-        }
+        setIcon(color: config.imageColor,
+                image: config.image,
+                imageType: config.imageType,
+                imageView: imageView)
         return imageView
     }()
     
@@ -122,16 +113,23 @@ public class LaunchAlertView_Popover1: UIView, LaunchAlertViewProtocol {
         popupView.addSubview(headerTitle)
         popupView.addSubview(descriptionLabel)
         popupView.addSubview(button)
+        popupView.addSubview(closeButton)
         setPopupViewConstraint()
         setUpdateImageViewConstraint()
         setTitleViewConstraint()
         setDescriptionConstraint()
+        setCloseButtonConstraint()
         setButtonConstraint()
     }
     
     @objc
     func openLink() {
         viewModel.openLink()
+        delegate?.dismiss()
+    }
+    
+    @objc
+    func dismiss() {
         delegate?.dismiss()
     }
     
@@ -266,6 +264,42 @@ public class LaunchAlertView_Popover1: UIView, LaunchAlertViewProtocol {
             attribute: .notAnAttribute,
             multiplier: 1,
             constant: 50).isActive = true
+    }
+    
+    public func setCloseButtonConstraint() {
+        closeButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint(
+            item: closeButton,
+            attribute: .right,
+            relatedBy: .equal,
+            toItem: popupView,
+            attribute: .right,
+            multiplier: 1,
+            constant: 16).isActive = true
+        NSLayoutConstraint(
+            item: closeButton,
+            attribute: .top,
+            relatedBy: .equal,
+            toItem: popupView,
+            attribute: .top,
+            multiplier: 1,
+            constant: 16).isActive = true
+        NSLayoutConstraint(
+            item: closeButton,
+            attribute: .width,
+            relatedBy: .equal,
+            toItem: nil,
+            attribute: NSLayoutConstraint.Attribute.notAnAttribute,
+            multiplier: 1,
+            constant: 40).isActive = true
+        NSLayoutConstraint(
+            item: closeButton,
+            attribute: .height,
+            relatedBy: .equal,
+            toItem: nil,
+            attribute: .notAnAttribute,
+            multiplier: 1,
+            constant: 40).isActive = true
     }
     
     public func setButtonConstraint() {
