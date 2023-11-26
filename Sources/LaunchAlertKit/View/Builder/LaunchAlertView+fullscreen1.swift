@@ -244,12 +244,12 @@ public class LaunchAlertView_FullScreen1: UIView, LaunchAlertViewProtocol {
         closeButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint(
             item: closeButton,
-            attribute: .right,
+            attribute: .left,
             relatedBy: .equal,
             toItem: contentView,
-            attribute: .right,
+            attribute: .left,
             multiplier: 1,
-            constant: -8).isActive = true
+            constant: 16).isActive = true
         NSLayoutConstraint(
             item: closeButton,
             attribute: .top,
@@ -257,7 +257,7 @@ public class LaunchAlertView_FullScreen1: UIView, LaunchAlertViewProtocol {
             toItem: contentView,
             attribute: .top,
             multiplier: 1,
-            constant: 8).isActive = true
+            constant: 48).isActive = true
         NSLayoutConstraint(
             item: closeButton,
             attribute: .width,
