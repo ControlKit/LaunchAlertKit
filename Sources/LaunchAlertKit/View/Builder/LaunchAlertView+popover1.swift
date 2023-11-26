@@ -316,12 +316,12 @@ public class LaunchAlertView_Popover1: UIView, LaunchAlertViewProtocol {
             constant: 0).isActive = true
         NSLayoutConstraint(
             item: button,
-            attribute: .top,
+            attribute: .bottom,
             relatedBy: .equal,
-            toItem: descriptionLabel,
+            toItem: popupView,
             attribute: .bottom,
             multiplier: 1,
-            constant: 50).isActive = true
+            constant: -30).isActive = true
         NSLayoutConstraint(
             item: button,
             attribute: .width,
