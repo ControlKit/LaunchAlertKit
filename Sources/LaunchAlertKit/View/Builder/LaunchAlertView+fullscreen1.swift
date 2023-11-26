@@ -190,7 +190,7 @@ public class LaunchAlertView_FullScreen1: UIView, LaunchAlertViewProtocol {
             toItem: descriptionLabel,
             attribute: .top,
             multiplier: 1,
-            constant: -30).isActive = true
+            constant: -16).isActive = true
         
         headerTitle.leadingAnchor.constraint(
             equalTo: contentView.leadingAnchor,

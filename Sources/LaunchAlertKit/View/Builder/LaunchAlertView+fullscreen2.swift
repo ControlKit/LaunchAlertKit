@@ -188,7 +188,7 @@ public class LaunchAlertView_FullScreen2: UIView, LaunchAlertViewProtocol {
             toItem: descriptionLabel,
             attribute: .top,
             multiplier: 1,
-            constant: -30).isActive = true
+            constant: -16).isActive = true
         
         title.leadingAnchor.constraint(
             equalTo: contentView.leadingAnchor,
@@ -254,7 +254,7 @@ public class LaunchAlertView_FullScreen2: UIView, LaunchAlertViewProtocol {
             toItem: contentView,
             attribute: .bottom,
             multiplier: 1,
-            constant: -90).isActive = true
+            constant: -100).isActive = true
         NSLayoutConstraint(
             item: button,
             attribute: .width,
