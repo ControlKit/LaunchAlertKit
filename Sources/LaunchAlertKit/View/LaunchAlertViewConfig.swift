@@ -29,7 +29,7 @@ public class LaunchAlertViewConfig {
     public var descriptionTextColor: UIColor = .gray
     
     public var buttonFont = UIFont.systemFont(ofSize: 13, weight: .bold)
-    public var buttonNortmalTitle: String = "I understood"
+    public var buttonNormalTitle: String = "I understood"
     public var buttonSelectedTitle: String = "I understood"
     public var buttonBackColor: UIColor = .orange
     public var buttonTitleColor: UIColor = .white
@@ -38,7 +38,7 @@ public class LaunchAlertViewConfig {
     public var buttonBorderColor: UIColor = .clear
     
     public var closeButtonFont = UIFont.systemFont(ofSize: 11, weight: .medium)
-    public var closeBottonNortmalTitle: String = "Close"
+    public var closeButtonNormalTitle: String = "Close"
     public var closeButtonBackColor: UIColor = .clear
     public var closeButtonTitleColor: UIColor = .orange
     public var closeButtonCornerRadius: CGFloat = 20.0

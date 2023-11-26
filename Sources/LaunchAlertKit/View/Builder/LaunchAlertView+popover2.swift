@@ -16,7 +16,7 @@ public class LaunchAlertView_Popover2: UIView, LaunchAlertViewProtocol {
         let button = UIButton()
         button.backgroundColor = config.buttonBackColor
         button.titleLabel?.textColor = config.buttonTitleColor
-        button.setTitle(config.buttonNortmalTitle, for: .normal)
+        button.setTitle(config.buttonNormalTitle, for: .normal)
         button.setTitle(config.buttonSelectedTitle, for: .selected)
         button.setCurvedView(cornerRadius: config.buttonCornerRadius,
                              borderWidth: config.buttonBorderWidth,
@@ -36,10 +36,14 @@ public class LaunchAlertView_Popover2: UIView, LaunchAlertViewProtocol {
     
     lazy var closeButton: UIButton = {
         let closeButton = UIButton()
-        let img = closeButtonIcon(color: config.closeButtonImageColor,
-                                  image: config.closeButtonImage)
-        closeButton.setImage(img, for: .normal)
-        closeButton.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        closeButton.backgroundColor = config.closeButtonBackColor
+        closeButton.titleLabel?.textColor = config.closeButtonTitleColor
+        closeButton.setTitle(config.closeButtonNormalTitle, for: .normal)
+        closeButton.setCurvedView(cornerRadius: config.closeButtonCornerRadius,
+                                  borderWidth: config.closeButtonBorderWidth,
+                                  borderColor: config.closeButtonBorderColor)
+        closeButton.titleLabel?.font = config.closeButtonFont
+        closeButton.setTitleColor(config.closeButtonTitleColor, for: .normal)
         closeButton.addTarget(self, action: #selector(dismiss), for: .touchUpInside)
         return closeButton
     }()
@@ -95,7 +99,7 @@ public class LaunchAlertView_Popover2: UIView, LaunchAlertViewProtocol {
         self.config = config
         self.viewModel = viewModel
         if let title = viewModel.response.title { self.config.title = title }
-        if let buttonTitle = viewModel.response.buttonTitle { self.config.buttonNortmalTitle = buttonTitle }
+        if let buttonTitle = viewModel.response.buttonTitle { self.config.buttonNormalTitle = buttonTitle }
         if let description = viewModel.response.description { self.config.descriptionText = description }
         super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         setup()
@@ -280,12 +284,12 @@ public class LaunchAlertView_Popover2: UIView, LaunchAlertViewProtocol {
             constant: 0).isActive = true
         NSLayoutConstraint(
             item: button,
-            attribute: .bottom,
+            attribute: .top,
             relatedBy: .equal,
-            toItem: popupView,
+            toItem: descriptionLabel,
             attribute: .bottom,
             multiplier: 1,
-            constant: -30).isActive = true
+            constant: 50).isActive = true
         NSLayoutConstraint(
             item: button,
             attribute: .width,
@@ -308,28 +312,28 @@ public class LaunchAlertView_Popover2: UIView, LaunchAlertViewProtocol {
         closeButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint(
             item: closeButton,
-            attribute: .right,
+            attribute: .centerX,
             relatedBy: .equal,
             toItem: popupView,
-            attribute: .right,
+            attribute: .centerX,
             multiplier: 1,
-            constant: -8).isActive = true
+            constant: 0).isActive = true
         NSLayoutConstraint(
             item: closeButton,
             attribute: .top,
             relatedBy: .equal,
-            toItem: popupView,
-            attribute: .top,
+            toItem: button,
+            attribute: .bottom,
             multiplier: 1,
-            constant: 8).isActive = true
+            constant: 10).isActive = true
         NSLayoutConstraint(
             item: closeButton,
             attribute: .width,
             relatedBy: .equal,
             toItem: nil,
-            attribute: .notAnAttribute,
+            attribute: NSLayoutConstraint.Attribute.notAnAttribute,
             multiplier: 1,
-            constant: 40).isActive = true
+            constant: 222).isActive = true
         NSLayoutConstraint(
             item: closeButton,
             attribute: .height,
@@ -337,7 +341,7 @@ public class LaunchAlertView_Popover2: UIView, LaunchAlertViewProtocol {
             toItem: nil,
             attribute: .notAnAttribute,
             multiplier: 1,
-            constant: 40).isActive = true
+            constant: 56).isActive = true
     }
 }
 

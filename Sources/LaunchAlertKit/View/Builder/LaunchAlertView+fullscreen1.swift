@@ -22,7 +22,7 @@ public class LaunchAlertView_FullScreen1: UIView, LaunchAlertViewProtocol {
         let button = UIButton()
         button.backgroundColor = config.buttonBackColor
         button.titleLabel?.textColor = config.buttonTitleColor
-        button.setTitle(config.buttonNortmalTitle, for: .normal)
+        button.setTitle(config.buttonNormalTitle, for: .normal)
         button.setTitle(config.buttonSelectedTitle, for: .selected)
         button.setCurvedView(cornerRadius: config.buttonCornerRadius,
                              borderWidth: config.buttonBorderWidth,
@@ -91,7 +91,7 @@ public class LaunchAlertView_FullScreen1: UIView, LaunchAlertViewProtocol {
         self.config = config
         self.viewModel = viewModel
         if let title = viewModel.response.title { self.config.title = title }
-        if let buttonTitle = viewModel.response.buttonTitle { self.config.buttonNortmalTitle = buttonTitle }
+        if let buttonTitle = viewModel.response.buttonTitle { self.config.buttonNormalTitle = buttonTitle }
         if let description = viewModel.response.description { self.config.descriptionText = description }
         super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         setup()
