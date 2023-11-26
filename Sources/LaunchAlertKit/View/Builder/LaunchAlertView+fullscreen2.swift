@@ -114,11 +114,13 @@ public class LaunchAlertView_FullScreen2: UIView, LaunchAlertViewProtocol {
         contentView.addSubview(imageView)
         contentView.addSubview(title)
         contentView.addSubview(descriptionLabel)
+        contentView.addSubview(closeButton)
         contentView.addSubview(button)
         commonInit()
         setUpdateImageViewConstraint()
         setTitleViewConstraint()
         setDescriptionConstraint()
+        setCloseButtonConstraint()
         setButtonConstraint()
     }
     
@@ -252,7 +254,7 @@ public class LaunchAlertView_FullScreen2: UIView, LaunchAlertViewProtocol {
             toItem: contentView,
             attribute: .bottom,
             multiplier: 1,
-            constant: -60).isActive = true
+            constant: -90).isActive = true
         NSLayoutConstraint(
             item: button,
             attribute: .width,
