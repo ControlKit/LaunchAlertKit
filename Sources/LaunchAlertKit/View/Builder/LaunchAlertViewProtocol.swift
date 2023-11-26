@@ -44,7 +44,7 @@ public extension LaunchAlertViewProtocol {
         } else if let image = image {
             return image
         } else {
-            return UIImage(named: "close") ?? UIImage()
+            return ImageHelper.image("close") ?? UIImage()
         }
     }
 }
