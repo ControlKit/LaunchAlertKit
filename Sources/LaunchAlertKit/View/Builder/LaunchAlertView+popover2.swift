@@ -35,12 +35,13 @@ public class LaunchAlertView_Popover2: UIView, LaunchAlertViewProtocol {
     }()
     
     lazy var closeButton: UIButton = {
-        let button = UIButton()
+        let closeButton = UIButton()
         let img = closeButtonIcon(color: config.closeButtonImageColor,
                                   image: config.closeButtonImage)
-        button.setImage(img, for: .normal)
-        button.addTarget(self, action: #selector(dismiss), for: .touchUpInside)
-        return button
+        closeButton.setImage(img, for: .normal)
+        closeButton.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        closeButton.addTarget(self, action: #selector(dismiss), for: .touchUpInside)
+        return closeButton
     }()
     
     lazy var popupView: UIView = {
@@ -114,11 +115,13 @@ public class LaunchAlertView_Popover2: UIView, LaunchAlertViewProtocol {
         popupView.addSubview(headerTitle)
         popupView.addSubview(descriptionLabel)
         popupView.addSubview(button)
+        popupView.addSubview(closeButton)
         setPopupViewConstraint()
         setUpdateImageViewConstraint()
         setTitleViewConstraint()
         setDescriptionConstraint()
         setButtonConstraint()
+        setCloseButtonConstraint()
     }
     
     @objc
@@ -299,6 +302,42 @@ public class LaunchAlertView_Popover2: UIView, LaunchAlertViewProtocol {
             attribute: .notAnAttribute,
             multiplier: 1,
             constant: 56).isActive = true
+    }
+    
+    public func setCloseButtonConstraint() {
+        closeButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint(
+            item: closeButton,
+            attribute: .right,
+            relatedBy: .equal,
+            toItem: popupView,
+            attribute: .right,
+            multiplier: 1,
+            constant: -8).isActive = true
+        NSLayoutConstraint(
+            item: closeButton,
+            attribute: .top,
+            relatedBy: .equal,
+            toItem: popupView,
+            attribute: .top,
+            multiplier: 1,
+            constant: 8).isActive = true
+        NSLayoutConstraint(
+            item: closeButton,
+            attribute: .width,
+            relatedBy: .equal,
+            toItem: nil,
+            attribute: .notAnAttribute,
+            multiplier: 1,
+            constant: 40).isActive = true
+        NSLayoutConstraint(
+            item: closeButton,
+            attribute: .height,
+            relatedBy: .equal,
+            toItem: nil,
+            attribute: .notAnAttribute,
+            multiplier: 1,
+            constant: 40).isActive = true
     }
 }
 

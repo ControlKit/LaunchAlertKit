@@ -32,7 +32,7 @@ public class LaunchAlertView_Popover1: UIView, LaunchAlertViewProtocol {
         let img = closeButtonIcon(color: config.closeButtonImageColor,
                                   image: config.closeButtonImage)
         closeButton.setImage(img, for: .normal)
-        closeButton.imageEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+        closeButton.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         closeButton.addTarget(self, action: #selector(dismiss), for: .touchUpInside)
         return closeButton
     }()
@@ -277,7 +277,7 @@ public class LaunchAlertView_Popover1: UIView, LaunchAlertViewProtocol {
             toItem: popupView,
             attribute: .right,
             multiplier: 1,
-            constant: 16).isActive = true
+            constant: -8).isActive = true
         NSLayoutConstraint(
             item: closeButton,
             attribute: .top,
@@ -285,7 +285,7 @@ public class LaunchAlertView_Popover1: UIView, LaunchAlertViewProtocol {
             toItem: popupView,
             attribute: .top,
             multiplier: 1,
-            constant: 16).isActive = true
+            constant: 8).isActive = true
         NSLayoutConstraint(
             item: closeButton,
             attribute: .width,
