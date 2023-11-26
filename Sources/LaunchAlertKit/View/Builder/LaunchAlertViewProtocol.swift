@@ -44,7 +44,9 @@ public extension LaunchAlertViewProtocol {
         } else if let image = image {
             return image
         } else {
-            return ImageHelper.image("close") ?? UIImage()
+            let edge = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+            return ImageHelper.image("close")?
+                .resizableImage(withCapInsets: edge) ?? UIImage()
         }
     }
 }
