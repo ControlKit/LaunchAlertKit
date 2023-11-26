@@ -73,7 +73,6 @@ public class LaunchAlertView_FullScreen2: UIView, LaunchAlertViewProtocol {
         closeButton.backgroundColor = config.buttonBackColor
         closeButton.titleLabel?.textColor = config.buttonTitleColor
         closeButton.setTitle(config.closeButtonNormalTitle, for: .normal)
-        closeButton.setTitle(config.buttonSelectedTitle, for: .selected)
         closeButton.setCurvedView(cornerRadius: config.buttonCornerRadius,
                                   borderWidth: config.buttonBorderWidth,
                                   borderColor: config.buttonBorderColor)
