@@ -35,6 +35,7 @@ public class LaunchAlertView_Popover2: UIView, LaunchAlertViewProtocol {
     }()
     
     lazy var closeButton: UIButton = {
+        let button = UIButton()
         let img = closeButtonIcon(color: config.closeButtonImageColor,
                                   image: config.closeButtonImage)
         button.setImage(img, for: .normal)

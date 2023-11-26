@@ -28,6 +28,7 @@ public class LaunchAlertView_Popover1: UIView, LaunchAlertViewProtocol {
     }()
     
     lazy var closeButton: UIButton = {
+        let button = UIButton()
         let img = closeButtonIcon(color: config.closeButtonImageColor,
                                   image: config.closeButtonImage)
         button.setImage(img, for: .normal)
@@ -289,7 +290,7 @@ public class LaunchAlertView_Popover1: UIView, LaunchAlertViewProtocol {
             attribute: .width,
             relatedBy: .equal,
             toItem: nil,
-            attribute: NSLayoutConstraint.Attribute.notAnAttribute,
+            attribute: .notAnAttribute,
             multiplier: 1,
             constant: 40).isActive = true
         NSLayoutConstraint(
