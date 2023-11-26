@@ -163,7 +163,7 @@ public class LaunchAlertView_Popover1: UIView, LaunchAlertViewProtocol {
             toItem: nil,
             attribute: .notAnAttribute,
             multiplier: 1,
-            constant: 433).isActive = true
+            constant: config.popupViewHeight).isActive = true
     }
     
     public func setUpdateImageViewConstraint() {

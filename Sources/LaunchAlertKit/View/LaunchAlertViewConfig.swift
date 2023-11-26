@@ -46,6 +46,8 @@ public class LaunchAlertViewConfig {
     public var closeButtonBorderColor: UIColor = .clear
     public var closeButtonImage: UIImage?
     public var closeButtonImageColor: UIColor = .orange
+    
+    public var popupViewHeight: CGFloat = 433.0
 }
 
 public enum ImageType: String {
