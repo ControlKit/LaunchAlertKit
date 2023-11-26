@@ -32,6 +32,7 @@ public class LaunchAlertView_Popover1: UIView, LaunchAlertViewProtocol {
         let img = closeButtonIcon(color: config.closeButtonImageColor,
                                   image: config.closeButtonImage)
         closeButton.setImage(img, for: .normal)
+        closeButton.imageEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
         closeButton.addTarget(self, action: #selector(dismiss), for: .touchUpInside)
         return closeButton
     }()
