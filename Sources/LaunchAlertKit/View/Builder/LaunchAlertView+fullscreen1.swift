@@ -33,6 +33,13 @@ public class LaunchAlertView_FullScreen1: UIView, LaunchAlertViewProtocol {
         return button
     }()
     
+    lazy var closeButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = config.closeButtonBackColor
+        button.addTarget(self, action: #selector(dismiss), for: .touchUpInside)
+        return button
+    }()
+    
     lazy var contentView: UIView = {
         let contentView = UIView()
         contentView.backgroundColor = config.contentViewBackColor
@@ -132,6 +139,11 @@ public class LaunchAlertView_FullScreen1: UIView, LaunchAlertViewProtocol {
     @objc
     func openLink() {
         viewModel.openLink()
+        delegate?.dismiss()
+    }
+    
+    @objc
+    func dismiss() {
         delegate?.dismiss()
     }
     
