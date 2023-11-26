@@ -17,7 +17,6 @@ public class LaunchAlertView_FullScreen2: UIView, LaunchAlertViewProtocol {
         button.backgroundColor = config.buttonBackColor
         button.titleLabel?.textColor = config.buttonTitleColor
         button.setTitle(config.buttonNormalTitle, for: .normal)
-        button.setTitle(config.buttonSelectedTitle, for: .selected)
         button.setCurvedView(cornerRadius: config.buttonCornerRadius,
                              borderWidth: config.buttonBorderWidth,
                              borderColor: config.buttonBorderColor)
@@ -41,6 +40,7 @@ public class LaunchAlertView_FullScreen2: UIView, LaunchAlertViewProtocol {
     
     lazy var imageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
         setIcon(color: config.imageColor,
                 image: config.image,
                 imageType: config.imageType,

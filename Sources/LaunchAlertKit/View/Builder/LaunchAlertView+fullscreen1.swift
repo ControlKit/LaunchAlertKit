@@ -23,7 +23,6 @@ public class LaunchAlertView_FullScreen1: UIView, LaunchAlertViewProtocol {
         button.backgroundColor = config.buttonBackColor
         button.titleLabel?.textColor = config.buttonTitleColor
         button.setTitle(config.buttonNormalTitle, for: .normal)
-        button.setTitle(config.buttonSelectedTitle, for: .selected)
         button.setCurvedView(cornerRadius: config.buttonCornerRadius,
                              borderWidth: config.buttonBorderWidth,
                              borderColor: config.buttonBorderColor)
@@ -34,10 +33,13 @@ public class LaunchAlertView_FullScreen1: UIView, LaunchAlertViewProtocol {
     }()
     
     lazy var closeButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = config.closeButtonBackColor
-        button.addTarget(self, action: #selector(dismiss), for: .touchUpInside)
-        return button
+        let closeButton = UIButton()
+        let img = closeButtonIcon(color: config.closeButtonImageColor,
+                                  image: config.closeButtonImage)
+        closeButton.setImage(img, for: .normal)
+        closeButton.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        closeButton.addTarget(self, action: #selector(dismiss), for: .touchUpInside)
+        return closeButton
     }()
     
     lazy var contentView: UIView = {
@@ -54,6 +56,7 @@ public class LaunchAlertView_FullScreen1: UIView, LaunchAlertViewProtocol {
     
     lazy var iconImageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
         setIcon(color: config.imageColor,
                 image: config.image,
                 imageType: config.imageType,
@@ -111,12 +114,14 @@ public class LaunchAlertView_FullScreen1: UIView, LaunchAlertViewProtocol {
         contentView.addSubview(contentBackGroundImageView)
         contentBackGroundImageView.fixInView(contentView)
         contentView.addSubview(iconImageView)
+        contentView.addSubview(closeButton)
         contentView.addSubview(button)
         contentView.addSubview(descriptionLabel)
         commonInit()
         setUpdateImageViewConstraint()
         setTitleViewConstraint()
         setButtonConstraint()
+        setCloseButtonConstraint()
     }
     
     @objc
@@ -147,7 +152,7 @@ public class LaunchAlertView_FullScreen1: UIView, LaunchAlertViewProtocol {
             toItem: contentView,
             attribute: .centerY,
             multiplier: 1,
-            constant: -150).isActive = true
+            constant: -80).isActive = true
         NSLayoutConstraint(
             item: iconImageView,
             attribute: .width,
@@ -233,6 +238,42 @@ public class LaunchAlertView_FullScreen1: UIView, LaunchAlertViewProtocol {
             attribute: .notAnAttribute,
             multiplier: 1,
             constant: 56).isActive = true
+    }
+    
+    public func setCloseButtonConstraint() {
+        closeButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint(
+            item: closeButton,
+            attribute: .right,
+            relatedBy: .equal,
+            toItem: contentView,
+            attribute: .right,
+            multiplier: 1,
+            constant: -8).isActive = true
+        NSLayoutConstraint(
+            item: closeButton,
+            attribute: .top,
+            relatedBy: .equal,
+            toItem: contentView,
+            attribute: .top,
+            multiplier: 1,
+            constant: 8).isActive = true
+        NSLayoutConstraint(
+            item: closeButton,
+            attribute: .width,
+            relatedBy: .equal,
+            toItem: nil,
+            attribute: .notAnAttribute,
+            multiplier: 1,
+            constant: 40).isActive = true
+        NSLayoutConstraint(
+            item: closeButton,
+            attribute: .height,
+            relatedBy: .equal,
+            toItem: nil,
+            attribute: .notAnAttribute,
+            multiplier: 1,
+            constant: 40).isActive = true
     }
 }
 

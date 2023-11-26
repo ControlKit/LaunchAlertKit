@@ -17,7 +17,6 @@ public class LaunchAlertView_Popover2: UIView, LaunchAlertViewProtocol {
         button.backgroundColor = config.buttonBackColor
         button.titleLabel?.textColor = config.buttonTitleColor
         button.setTitle(config.buttonNormalTitle, for: .normal)
-        button.setTitle(config.buttonSelectedTitle, for: .selected)
         button.setCurvedView(cornerRadius: config.buttonCornerRadius,
                              borderWidth: config.buttonBorderWidth,
                              borderColor: config.buttonBorderColor)
@@ -63,6 +62,7 @@ public class LaunchAlertView_Popover2: UIView, LaunchAlertViewProtocol {
     
     lazy var iconImageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
         setIcon(color: config.imageColor,
                 image: config.image,
                 imageType: config.imageType,
@@ -140,6 +140,9 @@ public class LaunchAlertView_Popover2: UIView, LaunchAlertViewProtocol {
     }
     
     public func setPopupViewConstraint() {
+        let width = UIScreen.main.bounds.width - 90
+        let height = config.descriptionText.heightWithConstrainedWidth(width: width,
+                                                                       font: config.descriptionFont)
         popupView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint(
             item: popupView,
@@ -167,7 +170,7 @@ public class LaunchAlertView_Popover2: UIView, LaunchAlertViewProtocol {
             toItem: nil,
             attribute: .notAnAttribute,
             multiplier: 1,
-            constant: config.popupViewHeight).isActive = true
+            constant: 400 + height).isActive = true
     }
     
     public func setUpdateImageViewConstraint() {
@@ -289,7 +292,7 @@ public class LaunchAlertView_Popover2: UIView, LaunchAlertViewProtocol {
             toItem: descriptionLabel,
             attribute: .bottom,
             multiplier: 1,
-            constant: 50).isActive = true
+            constant: 40).isActive = true
         NSLayoutConstraint(
             item: button,
             attribute: .width,

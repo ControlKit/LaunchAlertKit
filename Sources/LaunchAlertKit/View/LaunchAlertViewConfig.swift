@@ -16,21 +16,20 @@ public class LaunchAlertViewConfig {
     public var popupViewBackColor: UIColor = .black
     public var popupViewCornerRadius: CGFloat = 15.0
     
-    public var imageType: ImageType = .alerticon1
+    public var imageType: ImageType = .alertIcon1
     public var image: String?
     public var imageColor: UIColor?
     
     public var titleFont = UIFont.systemFont(ofSize: 13, weight: .bold)
-    public var title = "It's time to update"
+    public var title = "It's an alert"
     public var titleColor: UIColor = .orange
     
     public var descriptionFont = UIFont.systemFont(ofSize: 14, weight: .medium)
-    public var descriptionText = "It's time to update The version you are using is old, need to update the latest version in order to experience new features."
+    public var descriptionText = "It's an alert."
     public var descriptionTextColor: UIColor = .gray
     
     public var buttonFont = UIFont.systemFont(ofSize: 13, weight: .bold)
-    public var buttonNormalTitle: String = "I understood"
-    public var buttonSelectedTitle: String = "I understood"
+    public var buttonNormalTitle: String = "Ok"
     public var buttonBackColor: UIColor = .orange
     public var buttonTitleColor: UIColor = .white
     public var buttonCornerRadius: CGFloat = 20.0
@@ -46,13 +45,11 @@ public class LaunchAlertViewConfig {
     public var closeButtonBorderColor: UIColor = .clear
     public var closeButtonImage: UIImage?
     public var closeButtonImageColor: UIColor = .orange
-    
-    public var popupViewHeight: CGFloat = 433.0
 }
 
 public enum ImageType: String {
-    case alerticon1 = "alert1"
-    case alerticon2 = "alert2"
-    case alerticon3 = "alert3"
+    case alertIcon1 = "alert1"
+    case alertIcon2 = "alert2"
+    case alertIcon3 = "alert3"
     case gear = "gear"
 }

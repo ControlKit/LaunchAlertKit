@@ -47,6 +47,7 @@ public class LaunchAlertView_FullScreen4: UIView, LaunchAlertViewProtocol {
     
     lazy var iconImageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
         setIcon(color: config.imageColor,
                 image: config.image,
                 imageType: config.imageType,
