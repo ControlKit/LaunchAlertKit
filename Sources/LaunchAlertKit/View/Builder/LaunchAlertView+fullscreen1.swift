@@ -116,10 +116,12 @@ public class LaunchAlertView_FullScreen1: UIView, LaunchAlertViewProtocol {
         contentView.addSubview(iconImageView)
         contentView.addSubview(closeButton)
         contentView.addSubview(button)
+        contentView.addSubview(headerTitle)
         contentView.addSubview(descriptionLabel)
         commonInit()
         setUpdateImageViewConstraint()
         setTitleViewConstraint()
+        setDescriptionConstraint()
         setButtonConstraint()
         setCloseButtonConstraint()
     }
@@ -147,12 +149,12 @@ public class LaunchAlertView_FullScreen1: UIView, LaunchAlertViewProtocol {
             constant: 0).isActive = true
         NSLayoutConstraint(
             item: iconImageView,
-            attribute: .centerY,
+            attribute: .bottom,
             relatedBy: .equal,
-            toItem: contentView,
-            attribute: .centerY,
+            toItem: headerTitle,
+            attribute: .top,
             multiplier: 1,
-            constant: -80).isActive = true
+            constant: -70).isActive = true
         NSLayoutConstraint(
             item: iconImageView,
             attribute: .width,
@@ -172,6 +174,39 @@ public class LaunchAlertView_FullScreen1: UIView, LaunchAlertViewProtocol {
     }
     
     public func setTitleViewConstraint() {
+        headerTitle.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint(
+            item: headerTitle,
+            attribute: .centerX,
+            relatedBy: .equal,
+            toItem: contentView,
+            attribute: .centerX,
+            multiplier: 1,
+            constant: 0).isActive = true
+        NSLayoutConstraint(
+            item: headerTitle,
+            attribute: .bottom,
+            relatedBy: .equal,
+            toItem: descriptionLabel,
+            attribute: .top,
+            multiplier: 1,
+            constant: -30).isActive = true
+        
+        headerTitle.leadingAnchor.constraint(
+            equalTo: contentView.leadingAnchor,
+            constant: 24).isActive = true
+        
+        NSLayoutConstraint(
+            item: headerTitle,
+            attribute: .height,
+            relatedBy: .greaterThanOrEqual,
+            toItem: nil,
+            attribute: .notAnAttribute,
+            multiplier: 1,
+            constant: 30).isActive = true
+    }
+    
+    public func setDescriptionConstraint() {
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint(
             item: descriptionLabel,
@@ -185,10 +220,10 @@ public class LaunchAlertView_FullScreen1: UIView, LaunchAlertViewProtocol {
             item: descriptionLabel,
             attribute: .top,
             relatedBy: .equal,
-            toItem: iconImageView,
-            attribute: .bottom,
+            toItem: contentView,
+            attribute: .centerY,
             multiplier: 1,
-            constant: 56).isActive = true
+            constant: 0).isActive = true
         
         descriptionLabel.leadingAnchor.constraint(
             equalTo: contentView.leadingAnchor,

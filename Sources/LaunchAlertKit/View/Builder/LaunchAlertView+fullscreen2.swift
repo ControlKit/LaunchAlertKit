@@ -70,15 +70,15 @@ public class LaunchAlertView_FullScreen2: UIView, LaunchAlertViewProtocol {
     
     lazy var closeButton: UIButton = {
         let closeButton = UIButton()
-        closeButton.backgroundColor = config.buttonBackColor
-        closeButton.titleLabel?.textColor = config.buttonTitleColor
+        closeButton.backgroundColor = config.closeButtonBackColor
+        closeButton.titleLabel?.textColor = config.closeButtonTitleColor
         closeButton.setTitle(config.closeButtonNormalTitle, for: .normal)
-        closeButton.setCurvedView(cornerRadius: config.buttonCornerRadius,
-                                  borderWidth: config.buttonBorderWidth,
-                                  borderColor: config.buttonBorderColor)
-        closeButton.addTarget(self, action: #selector(openLink), for: .touchUpInside)
-        closeButton.titleLabel?.font = config.buttonFont
-        closeButton.setTitleColor(config.buttonTitleColor, for: .normal)
+        closeButton.setCurvedView(cornerRadius: config.closeButtonCornerRadius,
+                                  borderWidth: config.closeButtonBorderWidth,
+                                  borderColor: config.closeButtonBorderColor)
+        closeButton.titleLabel?.font = config.closeButtonFont
+        closeButton.setTitleColor(config.closeButtonTitleColor, for: .normal)
+        closeButton.addTarget(self, action: #selector(dismiss), for: .touchUpInside)
         return closeButton
     }()
     
@@ -145,12 +145,12 @@ public class LaunchAlertView_FullScreen2: UIView, LaunchAlertViewProtocol {
             constant: 0).isActive = true
         NSLayoutConstraint(
             item: imageView,
-            attribute: .centerY,
+            attribute: .bottom,
             relatedBy: .equal,
-            toItem: contentView,
-            attribute: .centerY,
+            toItem: title,
+            attribute: .top,
             multiplier: 1,
-            constant: -150).isActive = true
+            constant: -70).isActive = true
         NSLayoutConstraint(
             item: imageView,
             attribute: .width,
@@ -181,12 +181,12 @@ public class LaunchAlertView_FullScreen2: UIView, LaunchAlertViewProtocol {
             constant: 0).isActive = true
         NSLayoutConstraint(
             item: title,
-            attribute: .top,
-            relatedBy: .equal,
-            toItem: imageView,
             attribute: .bottom,
+            relatedBy: .equal,
+            toItem: descriptionLabel,
+            attribute: .top,
             multiplier: 1,
-            constant: 31).isActive = true
+            constant: -30).isActive = true
         
         title.leadingAnchor.constraint(
             equalTo: contentView.leadingAnchor,
@@ -216,10 +216,10 @@ public class LaunchAlertView_FullScreen2: UIView, LaunchAlertViewProtocol {
             item: descriptionLabel,
             attribute: .top,
             relatedBy: .equal,
-            toItem: title,
-            attribute: .bottom,
+            toItem: contentView,
+            attribute: .centerY,
             multiplier: 1,
-            constant: 16).isActive = true
+            constant: 0).isActive = true
         
         descriptionLabel.leadingAnchor.constraint(
             equalTo: contentView.leadingAnchor,
@@ -263,6 +263,42 @@ public class LaunchAlertView_FullScreen2: UIView, LaunchAlertViewProtocol {
             constant: 222).isActive = true
         NSLayoutConstraint(
             item: button,
+            attribute: .height,
+            relatedBy: .equal,
+            toItem: nil,
+            attribute: .notAnAttribute,
+            multiplier: 1,
+            constant: 56).isActive = true
+    }
+    
+    public func setCloseButtonConstraint() {
+        closeButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint(
+            item: closeButton,
+            attribute: .centerX,
+            relatedBy: .equal,
+            toItem: contentView,
+            attribute: .centerX,
+            multiplier: 1,
+            constant: 0).isActive = true
+        NSLayoutConstraint(
+            item: closeButton,
+            attribute: .top,
+            relatedBy: .equal,
+            toItem: button,
+            attribute: .bottom,
+            multiplier: 1,
+            constant: 10).isActive = true
+        NSLayoutConstraint(
+            item: closeButton,
+            attribute: .width,
+            relatedBy: .equal,
+            toItem: nil,
+            attribute: NSLayoutConstraint.Attribute.notAnAttribute,
+            multiplier: 1,
+            constant: 222).isActive = true
+        NSLayoutConstraint(
+            item: closeButton,
             attribute: .height,
             relatedBy: .equal,
             toItem: nil,
