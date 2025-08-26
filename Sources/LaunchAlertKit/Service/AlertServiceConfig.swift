@@ -7,12 +7,16 @@
 
 import Foundation
 public struct AlertServiceConfig {
-    public init(style: LaunchAlertViewStyle = .fullscreen1) {
-        self.viewConfig = LaunchAlertViewStyle.getViewConfigWithStyle(style: style)
+    public init(style: LaunchAlertViewStyle = .fullscreen1,
+                appId: String,
+                language: String,
+                version: String) {
+        self.viewConfig = LaunchAlertViewStyle.getViewConfigWithStyle(style: style, lang: language)
+        self.appId = appId
+        self.version = version
     }
-    public var route: String = "https://my.api.mockaroo.com/laucnalert.json?key=2202ab40"
+    public var route: String = "https://tauri.ir/api/force-updates"
     public var appId: String = Bundle.main.bundleIdentifier ?? String()
     public var version: String = Bundle.main.releaseVersionNumber ?? String()
     public var viewConfig: LaunchAlertViewConfig
-    public var language: String = "en"
 }

@@ -8,7 +8,10 @@
 import Foundation
 import UIKit
 public class LaunchAlertViewConfig {
-    public init() {}
+    public init(lang: String) {
+        self.lang = lang
+    }
+    public let lang: String
     public var style: LaunchAlertViewStyle = .fullscreen1
     
     public var contentViewBackColor: UIColor = UIColor(r: 0, g: 0, b: 0, a: 0.8)

@@ -39,20 +39,20 @@ public enum LaunchAlertViewStyle {
         }
     }
     
-    public static func getViewConfigWithStyle(style: LaunchAlertViewStyle) -> LaunchAlertViewConfig {
+    public static func getViewConfigWithStyle(style: LaunchAlertViewStyle, lang: String) -> LaunchAlertViewConfig {
         switch style {
         case .fullscreen1:
-            FullScreen1LaunchAlertViewConfig()
+            FullScreen1LaunchAlertViewConfig(lang: lang)
         case .fullscreen2:
-            FullScreen2LaunchAlertViewConfig()
+            FullScreen2LaunchAlertViewConfig(lang: lang)
         case .fullscreen3:
-            FullScreen3LaunchAlertViewConfig()
+            FullScreen3LaunchAlertViewConfig(lang: lang)
         case .fullscreen4:
-            FullScreen4LaunchAlertViewConfig()
+            FullScreen4LaunchAlertViewConfig(lang: lang)
         case .popover1:
-            Popover1LaunchAlertViewConfig()
+            Popover1LaunchAlertViewConfig(lang: lang)
         case .popover2:
-            Popover2LaunchAlertViewConfig()
+            Popover2LaunchAlertViewConfig(lang: lang)
         }
     }
 }

@@ -12,24 +12,25 @@ public class AlertService: AlertServiceProtocol {
     public func getAlert(request: AlertRequest) async throws -> AlertResponse {
         do {
             guard let url = URL(string: request.route) else {
-                return AlertResponse(hasAlert: false)
+                return AlertResponse()
             }
-            var request = URLRequest(url: url)
-            request.setValue(
+            var req = URLRequest(url: url)
+            req.allHTTPHeaderFields = request.dictionary
+            req.setValue(
                 "application/json",
                 forHTTPHeaderField: "Content-Type"
             )
-            let (data, _) = try await URLSession.shared.data(for: request)
+            let (data, _) = try await URLSession.shared.data(for: req)
             if let AlertResponse = try? JSONDecoder().decode(AlertResponse.self, from: data) {
                 print(AlertResponse)
                 return AlertResponse
             } else {
                 print("Invalid Response")
-                return AlertResponse(hasAlert: false)
+                return AlertResponse()
             }
         } catch {
             print("Failed to Send POST Request \(error)")
-            return AlertResponse(hasAlert: false)
+            return AlertResponse()
         }
     }
 }

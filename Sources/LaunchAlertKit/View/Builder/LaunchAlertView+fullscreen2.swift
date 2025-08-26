@@ -88,12 +88,10 @@ public class LaunchAlertView_FullScreen2: UIView, LaunchAlertViewProtocol {
     }
     
     public required init(viewModel: LaunchAlertViewModel,
-                         config: LaunchAlertViewConfig = FullScreen2LaunchAlertViewConfig()) {
+                         config: LaunchAlertViewConfig) {
         self.config = config
         self.viewModel = viewModel
-        if let title = viewModel.response.title { self.config.title = title }
-        if let buttonTitle = viewModel.response.buttonTitle { self.config.buttonNormalTitle = buttonTitle }
-        if let description = viewModel.response.description { self.config.descriptionText = description }
+        self.config = LaunchAlertViewPresenter(data: viewModel.response.data, config: self.config).config
         super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         setup()
     }
@@ -311,8 +309,8 @@ public class LaunchAlertView_FullScreen2: UIView, LaunchAlertViewProtocol {
 }
 
 public class FullScreen2LaunchAlertViewConfig: LaunchAlertViewConfig {
-    public override init() {
-        super.init()
+    public override init(lang: String) {
+        super.init(lang: lang)
         style = .fullscreen2
     }
 }

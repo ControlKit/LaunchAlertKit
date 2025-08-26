@@ -19,7 +19,7 @@ public final class DefaultLaunchAlertViewModel: LaunchAlertViewModel {
         self.response = response
     }
     public func openLink() {
-        if let url = response.linkUrl, let urlFinal = URL(string: url) {
+        if let url = response.data?.link, let urlFinal = URL(string: url) {
             UIApplication.shared.open(urlFinal)
         }
     }

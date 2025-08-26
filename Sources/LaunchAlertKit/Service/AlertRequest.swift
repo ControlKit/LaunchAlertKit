@@ -8,18 +8,16 @@
 import Foundation
 public struct AlertRequest {
     public var appId: String = Bundle.main.bundleIdentifier ?? String()
-    public var appVersion: String = Bundle.main.releaseVersionNumber ?? String()
-    public var version: String = UserDefaults.standard.string(forKey: String.Key.alertVersion.rawValue) ?? String()
     public var route: String
-    public var os: String = "iOs"
-    public var language: String = "en"
+    public var lastAlertVersion: String = UserDefaults.standard.string(forKey: String.Key.alertVersion.rawValue) ?? String()
+    public var deviceUUID: String = UUID().uuidString
+    public var sdkVersion: String = "1.0.0"
     
-    var dictionary: [String: Any] {
-        return ["appId": appId,
-                "appVersion": appVersion,
-                "version": version,
-                "os": os,
-                "lang": language]
+    var dictionary: [String: String] {
+        return ["x-app-id": appId,
+                "x-last-alert-version": lastAlertVersion,
+                "sdk-version": sdkVersion,
+                "x-device-uuid": deviceUUID]
     }
     
     var nsDictionary: NSDictionary {

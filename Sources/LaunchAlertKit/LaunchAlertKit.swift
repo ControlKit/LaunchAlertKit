@@ -12,12 +12,11 @@ public class LaunchAlertKit: Alertable {
     
     public func configure(root: UIViewController,
                           modalPresentationStyle: UIModalPresentationStyle = .fullScreen,
-                          config: AlertServiceConfig = AlertServiceConfig()) async {
+                          config: AlertServiceConfig) async {
         Task {
             let request = AlertRequest(appId: config.appId,
-                                       version: config.version,
                                        route: config.route,
-                                       language: config.language)
+                                       lastAlertVersion: config.version)
             let response = try await self.getAlert(request: request)
             let viewModel = DefaultLaunchAlertViewModel(response: response)
             DispatchQueue.main.async {
