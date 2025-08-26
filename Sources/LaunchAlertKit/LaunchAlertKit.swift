@@ -9,7 +9,7 @@ public class LaunchAlertKit: Alertable {
     public init(alertService: AlertServiceProtocol = AlertService()) {
         self.alertService = alertService
     }
-    
+    @MainActor
     public func configure(root: UIViewController,
                           modalPresentationStyle: UIModalPresentationStyle = .fullScreen,
                           config: AlertServiceConfig) async {
@@ -19,14 +19,16 @@ public class LaunchAlertKit: Alertable {
                                        lastAlertVersion: config.version)
             let response = try await self.getAlert(request: request)
             let viewModel = DefaultLaunchAlertViewModel(response: response)
+            let vc = LaunchAlertViewController(
+                viewModel: viewModel,
+                config: config
+            )
+            vc.modalPresentationStyle = modalPresentationStyle
+            if config.viewConfig.style == .popover1 ||
+                config.viewConfig.style == .popover2 {
+                vc.modalPresentationStyle = .overCurrentContext
+            }
             DispatchQueue.main.async {
-                let vc = LaunchAlertViewController(viewModel: viewModel,
-                                                   config: config)
-                vc.modalPresentationStyle = modalPresentationStyle
-                if config.viewConfig.style == .popover1 || 
-                    config.viewConfig.style == .popover2 {
-                    vc.modalPresentationStyle = .overCurrentContext
-                }
                 root.present(vc, animated: true)
             }
         }
