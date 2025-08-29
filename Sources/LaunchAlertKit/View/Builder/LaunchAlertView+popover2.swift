@@ -168,7 +168,7 @@ public class LaunchAlertView_Popover2: UIView, LaunchAlertViewProtocol {
             toItem: nil,
             attribute: .notAnAttribute,
             multiplier: 1,
-            constant: 400 + height).isActive = true
+            constant: 450 + height).isActive = true
     }
     
     public func setUpdateImageViewConstraint() {
@@ -188,7 +188,7 @@ public class LaunchAlertView_Popover2: UIView, LaunchAlertViewProtocol {
             toItem: popupView,
             attribute: .top,
             multiplier: 1,
-            constant: 66).isActive = true
+            constant: 30).isActive = true
         NSLayoutConstraint(
             item: iconImageView,
             attribute: .width,
@@ -196,7 +196,7 @@ public class LaunchAlertView_Popover2: UIView, LaunchAlertViewProtocol {
             toItem: nil,
             attribute: NSLayoutConstraint.Attribute.notAnAttribute,
             multiplier: 1,
-            constant: 64).isActive = true
+            constant: 250).isActive = true
         NSLayoutConstraint(
             item: iconImageView,
             attribute: .height,
@@ -204,7 +204,7 @@ public class LaunchAlertView_Popover2: UIView, LaunchAlertViewProtocol {
             toItem: nil,
             attribute: .notAnAttribute,
             multiplier: 1,
-            constant: 63).isActive = true
+            constant: 186).isActive = true
     }
     
     public func setTitleViewConstraint() {
@@ -257,7 +257,7 @@ public class LaunchAlertView_Popover2: UIView, LaunchAlertViewProtocol {
             toItem: headerTitle,
             attribute: .bottom,
             multiplier: 1,
-            constant: 10).isActive = true
+            constant: 24).isActive = true
         
         descriptionLabel.leadingAnchor.constraint(
             equalTo: popupView.leadingAnchor,
@@ -286,11 +286,11 @@ public class LaunchAlertView_Popover2: UIView, LaunchAlertViewProtocol {
         NSLayoutConstraint(
             item: button,
             attribute: .top,
-            relatedBy: .equal,
+            relatedBy: .greaterThanOrEqual,
             toItem: descriptionLabel,
             attribute: .bottom,
             multiplier: 1,
-            constant: 40).isActive = true
+            constant: 30).isActive = true
         NSLayoutConstraint(
             item: button,
             attribute: .width,
@@ -306,7 +306,7 @@ public class LaunchAlertView_Popover2: UIView, LaunchAlertViewProtocol {
             toItem: nil,
             attribute: .notAnAttribute,
             multiplier: 1,
-            constant: 56).isActive = true
+            constant: 42).isActive = true
     }
     
     public func setCloseButtonConstraint() {
@@ -326,7 +326,15 @@ public class LaunchAlertView_Popover2: UIView, LaunchAlertViewProtocol {
             toItem: button,
             attribute: .bottom,
             multiplier: 1,
-            constant: 10).isActive = true
+            constant: 8).isActive = true
+        NSLayoutConstraint(
+            item: closeButton,
+            attribute: .bottom,
+            relatedBy: .equal,
+            toItem: popupView,
+            attribute: .bottom,
+            multiplier: 1,
+            constant: 50).isActive = true
         NSLayoutConstraint(
             item: closeButton,
             attribute: .width,
@@ -342,7 +350,7 @@ public class LaunchAlertView_Popover2: UIView, LaunchAlertViewProtocol {
             toItem: nil,
             attribute: .notAnAttribute,
             multiplier: 1,
-            constant: 56).isActive = true
+            constant: 42).isActive = true
     }
 }
 
@@ -350,5 +358,8 @@ public class Popover2LaunchAlertViewConfig: LaunchAlertViewConfig {
     public override init(lang: String) {
         super.init(lang: lang)
         style = .popover2
+        buttonTitleColor = .white
+        closeButtonTitleColor = .white
+        imageType = .alertIcon3
     }
 }

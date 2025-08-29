@@ -45,7 +45,7 @@ public class LaunchAlertViewConfig {
     public var closeButtonTitleColor: UIColor = .orange
     public var closeButtonCornerRadius: CGFloat = 20.0
     public var closeButtonBorderWidth: CGFloat = 0.0
-    public var closeButtonBorderColor: UIColor = .clear
+    public var closeButtonBorderColor: UIColor = UIColor(r: 253, g: 105, b: 42)
     public var closeButtonImage: UIImage?
     public var closeButtonImageColor: UIColor = UIColor(r: 253, g: 105, b: 42)
     public var contentViewAlpha: CGFloat = 1.0
@@ -55,5 +55,6 @@ public enum ImageType: String {
     case alertIcon1 = "alert1"
     case alertIcon2 = "alert2"
     case alertIcon3 = "alert3"
+    case alertIcon4 = "alert4"
     case gear = "gear"
 }
