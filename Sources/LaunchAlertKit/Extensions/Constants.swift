@@ -9,6 +9,6 @@ import Foundation
 
 extension String {
     enum Key: String {
-        case alertVersion
+        case alertId
     }
 }

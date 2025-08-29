@@ -322,7 +322,7 @@ public class LaunchAlertView_Popover1: UIView, LaunchAlertViewProtocol {
             toItem: popupView,
             attribute: .bottom,
             multiplier: 1,
-            constant: -30).isActive = true
+            constant: 28).isActive = true
         NSLayoutConstraint(
             item: button,
             attribute: .width,
@@ -346,5 +346,7 @@ public class Popover1LaunchAlertViewConfig: LaunchAlertViewConfig {
     public override init(lang: String) {
         super.init(lang: lang)
         style = .popover1
+        contentViewBackColor = .white
+        popupViewBackColor = UIColor(r: 41, g: 143, b: 100, a: 0.18)
     }
 }

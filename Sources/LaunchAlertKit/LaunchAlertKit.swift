@@ -16,7 +16,7 @@ public class LaunchAlertKit: Alertable {
         Task {
             let request = AlertRequest(appId: config.appId,
                                        route: config.route,
-                                       lastAlertVersion: config.version)
+                                       sdkVersion: config.sdkVersion)
             let response = try await self.getAlert(request: request)
             let viewModel = DefaultLaunchAlertViewModel(response: response)
             let vc = LaunchAlertViewController(

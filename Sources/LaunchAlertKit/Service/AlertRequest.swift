@@ -9,14 +9,14 @@ import Foundation
 public struct AlertRequest {
     public var appId: String = Bundle.main.bundleIdentifier ?? String()
     public var route: String
-    public var lastAlertVersion: String = UserDefaults.standard.string(forKey: String.Key.alertVersion.rawValue) ?? String()
+    public var lastAlertId: String = UserDefaults.standard.string(forKey: String.Key.alertId.rawValue) ?? String()
     public var deviceUUID: String = UUID().uuidString
     public var sdkVersion: String = "1.0.0"
     
     var dictionary: [String: String] {
         return ["x-app-id": appId,
-                "x-last-alert-version": lastAlertVersion,
-                "sdk-version": sdkVersion,
+                "x-last-id": lastAlertId,
+                "x-sdk-version": sdkVersion,
                 "x-device-uuid": deviceUUID]
     }
     

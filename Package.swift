@@ -21,8 +21,7 @@ let package = Package(
         ),
         .testTarget(
             name: "LaunchAlertKitTests",
-            dependencies: ["LaunchAlertKit"],
-            resources: [.process("Resources")]
+            dependencies: ["LaunchAlertKit"]
         ),
     ]
 )

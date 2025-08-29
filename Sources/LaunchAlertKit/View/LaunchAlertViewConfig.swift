@@ -28,7 +28,7 @@ public class LaunchAlertViewConfig {
     public var titleColor: UIColor = .orange
     
     public var descriptionFont = UIFont.systemFont(ofSize: 14, weight: .medium)
-    public var descriptionText = "It's an alert."
+    public var descriptionText = "It's an alert description."
     public var descriptionTextColor: UIColor = .gray
     
     public var buttonFont = UIFont.systemFont(ofSize: 13, weight: .bold)

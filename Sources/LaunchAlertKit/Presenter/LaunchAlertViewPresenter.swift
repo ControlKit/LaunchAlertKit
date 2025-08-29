@@ -21,7 +21,7 @@ public struct LaunchAlertViewPresenter {
         
         if let localDescription = data?.description,
            let description = getLocalizeString(localDescription) { self.config.descriptionText = description }
-        if let icon = data?.icon { self.config.image = icon }
+        if let icon = data?.icon { self.config.image = icon } else { config.image = "gears" }
     }
     
     func getLocalizeString(_ localize: AlertLocalString) -> String? {

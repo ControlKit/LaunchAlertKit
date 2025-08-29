@@ -18,5 +18,6 @@ public struct AlertServiceConfig {
     public var route: String = "https://tauri.ir/api/force-updates"
     public var appId: String = Bundle.main.bundleIdentifier ?? String()
     public var version: String = Bundle.main.releaseVersionNumber ?? String()
+    public var sdkVersion: String = "1.0.0"
     public var viewConfig: LaunchAlertViewConfig
 }
