@@ -358,11 +358,12 @@ public class Popover2LaunchAlertViewConfig: LaunchAlertViewConfig {
     public override init(lang: String) {
         super.init(lang: lang)
         style = .popover2
-        buttonTitleColor = .white
-        closeButtonTitleColor = .white
+        titleColor = .white
+        descriptionTextColor = .white
         imageType = .alertIcon3
-        closeButtonBorderWidth = 1
+        buttonTitleColor = .white
         closeButtonBorderColor = UIColor(r: 253, g: 105, b: 42)
         closeButtonTitleColor = UIColor(r: 253, g: 105, b: 42)
+        closeButtonBorderWidth = 1
     }
 }
