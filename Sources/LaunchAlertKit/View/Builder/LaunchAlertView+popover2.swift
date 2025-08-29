@@ -358,6 +358,8 @@ public class Popover2LaunchAlertViewConfig: LaunchAlertViewConfig {
     public override init(lang: String) {
         super.init(lang: lang)
         style = .popover2
+        titleFont = UIFont.systemFont(ofSize: 20, weight: .heavy)
+        descriptionFont = UIFont.systemFont(ofSize: 16, weight: .medium)
         titleColor = .white
         descriptionTextColor = .white
         imageType = .alertIcon3
