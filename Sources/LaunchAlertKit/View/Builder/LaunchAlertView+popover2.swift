@@ -168,7 +168,7 @@ public class LaunchAlertView_Popover2: UIView, LaunchAlertViewProtocol {
             toItem: nil,
             attribute: .notAnAttribute,
             multiplier: 1,
-            constant: 450 + height).isActive = true
+            constant: 500 + height).isActive = true
     }
     
     public func setUpdateImageViewConstraint() {
@@ -298,7 +298,7 @@ public class LaunchAlertView_Popover2: UIView, LaunchAlertViewProtocol {
             toItem: nil,
             attribute: NSLayoutConstraint.Attribute.notAnAttribute,
             multiplier: 1,
-            constant: 222).isActive = true
+            constant: 320).isActive = true
         NSLayoutConstraint(
             item: button,
             attribute: .height,
@@ -342,7 +342,7 @@ public class LaunchAlertView_Popover2: UIView, LaunchAlertViewProtocol {
             toItem: nil,
             attribute: NSLayoutConstraint.Attribute.notAnAttribute,
             multiplier: 1,
-            constant: 222).isActive = true
+            constant: 320).isActive = true
         NSLayoutConstraint(
             item: closeButton,
             attribute: .height,
