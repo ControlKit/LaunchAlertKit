@@ -39,7 +39,7 @@ public class LaunchAlertViewConfig {
     public var buttonBorderWidth: CGFloat = 0.0
     public var buttonBorderColor: UIColor = .clear
     
-    public var closeButtonFont = UIFont.systemFont(ofSize: 11, weight: .medium)
+    public var closeButtonFont = UIFont.systemFont(ofSize: 16, weight: .semibold)
     public var closeButtonNormalTitle: String = "Close"
     public var closeButtonBackColor: UIColor = .clear
     public var closeButtonTitleColor: UIColor = .orange

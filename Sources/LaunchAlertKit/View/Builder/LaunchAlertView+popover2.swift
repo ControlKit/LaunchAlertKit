@@ -334,7 +334,7 @@ public class LaunchAlertView_Popover2: UIView, LaunchAlertViewProtocol {
             toItem: popupView,
             attribute: .bottom,
             multiplier: 1,
-            constant: 50).isActive = true
+            constant: -50).isActive = true
         NSLayoutConstraint(
             item: closeButton,
             attribute: .width,
@@ -361,5 +361,8 @@ public class Popover2LaunchAlertViewConfig: LaunchAlertViewConfig {
         buttonTitleColor = .white
         closeButtonTitleColor = .white
         imageType = .alertIcon3
+        closeButtonBorderWidth = 1
+        closeButtonBorderColor = UIColor(r: 253, g: 105, b: 42)
+        closeButtonTitleColor = UIColor(r: 253, g: 105, b: 42)
     }
 }
