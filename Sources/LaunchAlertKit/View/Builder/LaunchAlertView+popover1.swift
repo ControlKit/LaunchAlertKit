@@ -346,7 +346,7 @@ public class Popover1LaunchAlertViewConfig: LaunchAlertViewConfig {
     public override init(lang: String) {
         super.init(lang: lang)
         style = .popover1
-        contentViewBackColor = .white
-        popupViewBackColor = UIColor(r: 41, g: 143, b: 100, a: 0.18)
+        contentViewBackColor = UIColor(r: 41, g: 143, b: 100, a: 0.18)
+        popupViewBackColor = .white
     }
 }
