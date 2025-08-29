@@ -8,5 +8,5 @@
 import Foundation
 
 public protocol AlertServiceProtocol {
-    func getAlert(request: AlertRequest) async throws -> AlertResponse
+    func getAlert(request: AlertRequest) async throws -> AlertResponse?
 }

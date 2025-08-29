@@ -9,7 +9,7 @@ import Foundation
 
 public class AlertService: AlertServiceProtocol {
     public init() {}
-    public func getAlert(request: AlertRequest) async throws -> AlertResponse {
+    public func getAlert(request: AlertRequest) async throws -> AlertResponse? {
         do {
             guard let url = URL(string: request.route) else {
                 return AlertResponse()
@@ -20,17 +20,17 @@ public class AlertService: AlertServiceProtocol {
                 "application/json",
                 forHTTPHeaderField: "Content-Type"
             )
-            let (data, _) = try await URLSession.shared.data(for: req)
+            let (data, res) = try await URLSession.shared.data(for: req)
             if let AlertResponse = try? JSONDecoder().decode(AlertResponse.self, from: data) {
                 print(AlertResponse)
                 return AlertResponse
             } else {
                 print("Invalid Response")
-                return AlertResponse()
+                return nil
             }
         } catch {
             print("Failed to Send POST Request \(error)")
-            return AlertResponse()
+            return nil
         }
     }
 }

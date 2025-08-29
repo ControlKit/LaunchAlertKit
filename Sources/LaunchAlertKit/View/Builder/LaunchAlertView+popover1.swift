@@ -39,13 +39,20 @@ public class LaunchAlertView_Popover1: UIView, LaunchAlertViewProtocol {
     lazy var contentView: UIView = {
         let contentView = UIView()
         contentView.backgroundColor = config.contentViewBackColor
-        contentView.alpha = 0.8
+        contentView.alpha = config.contentViewAlpha
         return contentView
     }()
     
     lazy var popupView: UIView = {
         let popupView = UIView()
         popupView.backgroundColor = config.popupViewBackColor
+        popupView.setCurvedView(cornerRadius: config.popupViewCornerRadius)
+        return popupView
+    }()
+    
+    lazy var parentPopupView: UIView = {
+        let popupView = UIView()
+        popupView.backgroundColor = .clear
         popupView.setCurvedView(cornerRadius: config.popupViewCornerRadius)
         return popupView
     }()
@@ -108,12 +115,14 @@ public class LaunchAlertView_Popover1: UIView, LaunchAlertViewProtocol {
         contentView.fixInView(self)
         contentView.addSubview(contentBackGroundImageView)
         contentBackGroundImageView.fixInView(contentView)
-        addSubview(popupView)
+        addSubview(parentPopupView)
+        parentPopupView.addSubview(popupView)
         popupView.addSubview(iconImageView)
         popupView.addSubview(headerTitle)
         popupView.addSubview(descriptionLabel)
-        popupView.addSubview(button)
         popupView.addSubview(closeButton)
+        parentPopupView.addSubview(button)
+        setParentPopupViewConstraint()
         setPopupViewConstraint()
         setUpdateImageViewConstraint()
         setTitleViewConstraint()
@@ -133,6 +142,40 @@ public class LaunchAlertView_Popover1: UIView, LaunchAlertViewProtocol {
         delegate?.dismiss()
     }
     
+    public func setParentPopupViewConstraint() {
+        let width = UIScreen.main.bounds.width - 90
+        let height = config.descriptionText.heightWithConstrainedWidth(width: width,
+                                                                       font: config.descriptionFont) + 30
+        parentPopupView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint(
+            item: parentPopupView,
+            attribute: .centerX,
+            relatedBy: .equal,
+            toItem: self,
+            attribute: .centerX,
+            multiplier: 1,
+            constant: 0).isActive = true
+        NSLayoutConstraint(
+            item: parentPopupView,
+            attribute: .centerY,
+            relatedBy: .equal,
+            toItem: self,
+            attribute: .centerY,
+            multiplier: 1,
+            constant: 0).isActive = true
+        parentPopupView.leadingAnchor.constraint(
+            equalTo: self.leadingAnchor,
+            constant: 24).isActive = true
+        NSLayoutConstraint(
+            item: parentPopupView,
+            attribute: .height,
+            relatedBy: .equal,
+            toItem: nil,
+            attribute: .notAnAttribute,
+            multiplier: 1,
+            constant: 430 + height).isActive = true
+    }
+    
     public func setPopupViewConstraint() {
         let width = UIScreen.main.bounds.width - 90
         let height = config.descriptionText.heightWithConstrainedWidth(width: width,
@@ -142,7 +185,7 @@ public class LaunchAlertView_Popover1: UIView, LaunchAlertViewProtocol {
             item: popupView,
             attribute: .centerX,
             relatedBy: .equal,
-            toItem: self,
+            toItem: parentPopupView,
             attribute: .centerX,
             multiplier: 1,
             constant: 0).isActive = true
@@ -150,13 +193,12 @@ public class LaunchAlertView_Popover1: UIView, LaunchAlertViewProtocol {
             item: popupView,
             attribute: .centerY,
             relatedBy: .equal,
-            toItem: self,
+            toItem: parentPopupView,
             attribute: .centerY,
             multiplier: 1,
             constant: 0).isActive = true
         popupView.leadingAnchor.constraint(
-            equalTo: self.leadingAnchor,
-            constant: 24).isActive = true
+            equalTo: parentPopupView.leadingAnchor).isActive = true
         NSLayoutConstraint(
             item: popupView,
             attribute: .height,
@@ -346,7 +388,9 @@ public class Popover1LaunchAlertViewConfig: LaunchAlertViewConfig {
     public override init(lang: String) {
         super.init(lang: lang)
         style = .popover1
-        contentViewBackColor = UIColor(r: 41, g: 143, b: 100, a: 0.18)
-        popupViewBackColor = .white
+        image = "gear"
+        imageColor = UIColor(r: 18, g: 18, b: 18)
+        contentViewBackColor = .white
+        popupViewBackColor = UIColor(r: 216, g: 235, b: 227)
     }
 }
