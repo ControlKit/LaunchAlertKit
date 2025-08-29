@@ -21,6 +21,9 @@ public class AlertService: AlertServiceProtocol {
                 forHTTPHeaderField: "Content-Type"
             )
             let (data, res) = try await URLSession.shared.data(for: req)
+            if (res as? HTTPURLResponse)?.statusCode == 204 {
+                return nil
+            }
             if let AlertResponse = try? JSONDecoder().decode(AlertResponse.self, from: data) {
                 print(AlertResponse)
                 return AlertResponse
