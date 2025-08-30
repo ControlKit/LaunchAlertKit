@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-public class LaunchAlertView_FullScreen3: UIView, LaunchAlertViewProtocol {
+public class LaunchAlertView_Popover4: UIView, LaunchAlertViewProtocol {
     var config: LaunchAlertViewConfig
     var viewModel: LaunchAlertViewModel
     weak public var delegate: LaunchAlertDelegate?
@@ -29,20 +29,35 @@ public class LaunchAlertView_FullScreen3: UIView, LaunchAlertViewProtocol {
     lazy var contentView: UIView = {
         let contentView = UIView()
         contentView.backgroundColor = config.contentViewBackColor
+        contentView.alpha = 0.8
         return contentView
+    }()
+    
+    lazy var closeButton: UIButton = {
+        let closeButton = UIButton()
+        closeButton.backgroundColor = config.closeButtonBackColor
+        closeButton.titleLabel?.textColor = config.closeButtonTitleColor
+        closeButton.setTitle(config.closeButtonNormalTitle, for: .normal)
+        closeButton.setCurvedView(cornerRadius: config.closeButtonCornerRadius,
+                                  borderWidth: config.closeButtonBorderWidth,
+                                  borderColor: config.closeButtonBorderColor)
+        closeButton.titleLabel?.font = config.closeButtonFont
+        closeButton.setTitleColor(config.closeButtonTitleColor, for: .normal)
+        closeButton.addTarget(self, action: #selector(dismiss), for: .touchUpInside)
+        return closeButton
+    }()
+    
+    lazy var popupView: UIView = {
+        let popupView = UIView()
+        popupView.backgroundColor = config.popupViewBackColor
+        popupView.setCurvedView(cornerRadius: config.popupViewCornerRadius)
+        return popupView
     }()
     
     lazy var contentBackGroundImageView: UIImageView = {
         let contentBackGroundImageView = UIImageView()
         contentBackGroundImageView.image = config.contentBackGroundImage
         return contentBackGroundImageView
-    }()
-    
-    lazy var closeButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = config.closeButtonBackColor
-        button.addTarget(self, action: #selector(dismiss), for: .touchUpInside)
-        return button
     }()
     
     lazy var iconImageView: UIImageView = {
@@ -77,7 +92,6 @@ public class LaunchAlertView_FullScreen3: UIView, LaunchAlertViewProtocol {
     
     public override func layoutSubviews() {
         super.layoutSubviews()
-        contentView.setCurvedView(cornerRadius: 20)
     }
     
     public required init(viewModel: LaunchAlertViewModel,
@@ -93,24 +107,23 @@ public class LaunchAlertView_FullScreen3: UIView, LaunchAlertViewProtocol {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func commonInit() {
-        contentView.fixInView(self)
-    }
-    
     public func setup() {
         addSubview(contentView)
         contentView.fixInView(self)
         contentView.addSubview(contentBackGroundImageView)
         contentBackGroundImageView.fixInView(contentView)
-        contentView.addSubview(iconImageView)
-        contentView.addSubview(headerTitle)
-        contentView.addSubview(descriptionLabel)
-        contentView.addSubview(button)
-        commonInit()
+        addSubview(popupView)
+        popupView.addSubview(iconImageView)
+        popupView.addSubview(headerTitle)
+        popupView.addSubview(descriptionLabel)
+        popupView.addSubview(button)
+        popupView.addSubview(closeButton)
+        setPopupViewConstraint()
         setUpdateImageViewConstraint()
         setTitleViewConstraint()
         setDescriptionConstraint()
         setButtonConstraint()
+        setCloseButtonConstraint()
     }
     
     @objc
@@ -124,24 +137,58 @@ public class LaunchAlertView_FullScreen3: UIView, LaunchAlertViewProtocol {
         delegate?.dismiss()
     }
     
+    public func setPopupViewConstraint() {
+        let width = UIScreen.main.bounds.width - 90
+        let height = config.descriptionText.heightWithConstrainedWidth(width: width,
+                                                                       font: config.descriptionFont)
+        popupView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint(
+            item: popupView,
+            attribute: .centerX,
+            relatedBy: .equal,
+            toItem: self,
+            attribute: .centerX,
+            multiplier: 1,
+            constant: 0).isActive = true
+        NSLayoutConstraint(
+            item: popupView,
+            attribute: .centerY,
+            relatedBy: .equal,
+            toItem: self,
+            attribute: .centerY,
+            multiplier: 1,
+            constant: 0).isActive = true
+        popupView.leadingAnchor.constraint(
+            equalTo: self.leadingAnchor,
+            constant: 24).isActive = true
+        NSLayoutConstraint(
+            item: popupView,
+            attribute: .height,
+            relatedBy: .equal,
+            toItem: nil,
+            attribute: .notAnAttribute,
+            multiplier: 1,
+            constant: 500 + height).isActive = true
+    }
+    
     public func setUpdateImageViewConstraint() {
         iconImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint(
             item: iconImageView,
             attribute: .centerX,
             relatedBy: .equal,
-            toItem: contentView,
+            toItem: popupView,
             attribute: .centerX,
             multiplier: 1,
             constant: 0).isActive = true
         NSLayoutConstraint(
             item: iconImageView,
-            attribute: .centerY,
+            attribute: .top,
             relatedBy: .equal,
-            toItem: contentView,
-            attribute: .centerY,
+            toItem: popupView,
+            attribute: .top,
             multiplier: 1,
-            constant: -150).isActive = true
+            constant: 30).isActive = true
         NSLayoutConstraint(
             item: iconImageView,
             attribute: .width,
@@ -149,7 +196,7 @@ public class LaunchAlertView_FullScreen3: UIView, LaunchAlertViewProtocol {
             toItem: nil,
             attribute: NSLayoutConstraint.Attribute.notAnAttribute,
             multiplier: 1,
-            constant: 191).isActive = true
+            constant: 250).isActive = true
         NSLayoutConstraint(
             item: iconImageView,
             attribute: .height,
@@ -157,7 +204,7 @@ public class LaunchAlertView_FullScreen3: UIView, LaunchAlertViewProtocol {
             toItem: nil,
             attribute: .notAnAttribute,
             multiplier: 1,
-            constant: 139).isActive = true
+            constant: 186).isActive = true
     }
     
     public func setTitleViewConstraint() {
@@ -166,7 +213,7 @@ public class LaunchAlertView_FullScreen3: UIView, LaunchAlertViewProtocol {
             item: headerTitle,
             attribute: .centerX,
             relatedBy: .equal,
-            toItem: contentView,
+            toItem: popupView,
             attribute: .centerX,
             multiplier: 1,
             constant: 0).isActive = true
@@ -177,11 +224,11 @@ public class LaunchAlertView_FullScreen3: UIView, LaunchAlertViewProtocol {
             toItem: iconImageView,
             attribute: .bottom,
             multiplier: 1,
-            constant: 31).isActive = true
+            constant: 41).isActive = true
         
         headerTitle.leadingAnchor.constraint(
-            equalTo: contentView.leadingAnchor,
-            constant: 24).isActive = true
+            equalTo: popupView.leadingAnchor,
+            constant: 21).isActive = true
         
         NSLayoutConstraint(
             item: headerTitle,
@@ -199,7 +246,7 @@ public class LaunchAlertView_FullScreen3: UIView, LaunchAlertViewProtocol {
             item: descriptionLabel,
             attribute: .centerX,
             relatedBy: .equal,
-            toItem: contentView,
+            toItem: popupView,
             attribute: .centerX,
             multiplier: 1,
             constant: 0).isActive = true
@@ -210,11 +257,11 @@ public class LaunchAlertView_FullScreen3: UIView, LaunchAlertViewProtocol {
             toItem: headerTitle,
             attribute: .bottom,
             multiplier: 1,
-            constant: 16).isActive = true
+            constant: 24).isActive = true
         
         descriptionLabel.leadingAnchor.constraint(
-            equalTo: contentView.leadingAnchor,
-            constant: 24).isActive = true
+            equalTo: popupView.leadingAnchor,
+            constant: 21).isActive = true
         
         NSLayoutConstraint(
             item: descriptionLabel,
@@ -232,18 +279,18 @@ public class LaunchAlertView_FullScreen3: UIView, LaunchAlertViewProtocol {
             item: button,
             attribute: .centerX,
             relatedBy: .equal,
-            toItem: contentView,
+            toItem: popupView,
             attribute: .centerX,
             multiplier: 1,
             constant: 0).isActive = true
         NSLayoutConstraint(
             item: button,
             attribute: .top,
-            relatedBy: .equal,
+            relatedBy: .greaterThanOrEqual,
             toItem: descriptionLabel,
             attribute: .bottom,
             multiplier: 1,
-            constant: 42).isActive = true
+            constant: 30).isActive = true
         NSLayoutConstraint(
             item: button,
             attribute: .width,
@@ -251,7 +298,7 @@ public class LaunchAlertView_FullScreen3: UIView, LaunchAlertViewProtocol {
             toItem: nil,
             attribute: NSLayoutConstraint.Attribute.notAnAttribute,
             multiplier: 1,
-            constant: 222).isActive = true
+            constant: 320).isActive = true
         NSLayoutConstraint(
             item: button,
             attribute: .height,
@@ -259,13 +306,66 @@ public class LaunchAlertView_FullScreen3: UIView, LaunchAlertViewProtocol {
             toItem: nil,
             attribute: .notAnAttribute,
             multiplier: 1,
-            constant: 56).isActive = true
+            constant: 42).isActive = true
+    }
+    
+    public func setCloseButtonConstraint() {
+        closeButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint(
+            item: closeButton,
+            attribute: .centerX,
+            relatedBy: .equal,
+            toItem: popupView,
+            attribute: .centerX,
+            multiplier: 1,
+            constant: 0).isActive = true
+        NSLayoutConstraint(
+            item: closeButton,
+            attribute: .top,
+            relatedBy: .equal,
+            toItem: button,
+            attribute: .bottom,
+            multiplier: 1,
+            constant: 8).isActive = true
+        NSLayoutConstraint(
+            item: closeButton,
+            attribute: .bottom,
+            relatedBy: .equal,
+            toItem: popupView,
+            attribute: .bottom,
+            multiplier: 1,
+            constant: -50).isActive = true
+        NSLayoutConstraint(
+            item: closeButton,
+            attribute: .width,
+            relatedBy: .equal,
+            toItem: nil,
+            attribute: NSLayoutConstraint.Attribute.notAnAttribute,
+            multiplier: 1,
+            constant: 320).isActive = true
+        NSLayoutConstraint(
+            item: closeButton,
+            attribute: .height,
+            relatedBy: .equal,
+            toItem: nil,
+            attribute: .notAnAttribute,
+            multiplier: 1,
+            constant: 42).isActive = true
     }
 }
 
-public class FullScreen3LaunchAlertViewConfig: LaunchAlertViewConfig {
+public class Popover4LaunchAlertViewConfig: LaunchAlertViewConfig {
     public override init(lang: String) {
         super.init(lang: lang)
-        style = .fullscreen3
+        style = .popover4
+        titleFont = UIFont.systemFont(ofSize: 20, weight: .heavy)
+        descriptionFont = UIFont.systemFont(ofSize: 16, weight: .medium)
+        titleColor = .white
+        descriptionTextColor = .white
+        imageType = .alertIcon3
+        buttonTitleColor = .white
+        closeButtonBorderColor = UIColor(r: 253, g: 105, b: 42)
+        closeButtonTitleColor = UIColor(r: 253, g: 105, b: 42)
+        closeButtonBorderWidth = 1
     }
 }
