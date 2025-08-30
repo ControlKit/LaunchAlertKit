@@ -298,7 +298,7 @@ public class LaunchAlertView_Popover3: UIView, LaunchAlertViewProtocol {
             toItem: nil,
             attribute: NSLayoutConstraint.Attribute.notAnAttribute,
             multiplier: 1,
-            constant: 320).isActive = true
+            constant: 250).isActive = true
         NSLayoutConstraint(
             item: button,
             attribute: .height,
@@ -306,7 +306,7 @@ public class LaunchAlertView_Popover3: UIView, LaunchAlertViewProtocol {
             toItem: nil,
             attribute: .notAnAttribute,
             multiplier: 1,
-            constant: 42).isActive = true
+            constant: 44).isActive = true
     }
     
     public func setCloseButtonConstraint() {
@@ -342,7 +342,7 @@ public class LaunchAlertView_Popover3: UIView, LaunchAlertViewProtocol {
             toItem: nil,
             attribute: NSLayoutConstraint.Attribute.notAnAttribute,
             multiplier: 1,
-            constant: 320).isActive = true
+            constant: 250).isActive = true
         NSLayoutConstraint(
             item: closeButton,
             attribute: .height,
@@ -350,7 +350,7 @@ public class LaunchAlertView_Popover3: UIView, LaunchAlertViewProtocol {
             toItem: nil,
             attribute: .notAnAttribute,
             multiplier: 1,
-            constant: 42).isActive = true
+            constant: 44).isActive = true
     }
 }
 
@@ -358,11 +358,12 @@ public class Popover3LaunchAlertViewConfig: LaunchAlertViewConfig {
     public override init(lang: String) {
         super.init(lang: lang)
         style = .popover3
+        popupViewBackColor = .white
         titleFont = UIFont.systemFont(ofSize: 20, weight: .heavy)
         descriptionFont = UIFont.systemFont(ofSize: 16, weight: .medium)
-        titleColor = .white
-        descriptionTextColor = .white
-        imageType = .alertIcon3
+        titleColor = UIColor(r: 24, g: 32, b: 53)
+        descriptionTextColor = UIColor(r: 96, g: 98, b: 104)
+        imageType = .alertIcon1
         buttonTitleColor = .white
         closeButtonBorderColor = UIColor(r: 253, g: 105, b: 42)
         closeButtonTitleColor = UIColor(r: 253, g: 105, b: 42)

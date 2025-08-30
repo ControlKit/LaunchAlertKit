@@ -160,7 +160,7 @@ public class LaunchAlertView_Popover4: UIView, LaunchAlertViewProtocol {
             constant: 0).isActive = true
         popupView.leadingAnchor.constraint(
             equalTo: self.leadingAnchor,
-            constant: 24).isActive = true
+            constant: 30).isActive = true
         NSLayoutConstraint(
             item: popupView,
             attribute: .height,
@@ -168,7 +168,7 @@ public class LaunchAlertView_Popover4: UIView, LaunchAlertViewProtocol {
             toItem: nil,
             attribute: .notAnAttribute,
             multiplier: 1,
-            constant: 500 + height).isActive = true
+            constant: 400 + height).isActive = true
     }
     
     public func setUpdateImageViewConstraint() {
@@ -196,7 +196,7 @@ public class LaunchAlertView_Popover4: UIView, LaunchAlertViewProtocol {
             toItem: nil,
             attribute: NSLayoutConstraint.Attribute.notAnAttribute,
             multiplier: 1,
-            constant: 250).isActive = true
+            constant: 175).isActive = true
         NSLayoutConstraint(
             item: iconImageView,
             attribute: .height,
@@ -204,7 +204,7 @@ public class LaunchAlertView_Popover4: UIView, LaunchAlertViewProtocol {
             toItem: nil,
             attribute: .notAnAttribute,
             multiplier: 1,
-            constant: 186).isActive = true
+            constant: 150).isActive = true
     }
     
     public func setTitleViewConstraint() {
@@ -306,7 +306,7 @@ public class LaunchAlertView_Popover4: UIView, LaunchAlertViewProtocol {
             toItem: nil,
             attribute: .notAnAttribute,
             multiplier: 1,
-            constant: 42).isActive = true
+            constant: 48).isActive = true
     }
     
     public func setCloseButtonConstraint() {
@@ -350,7 +350,7 @@ public class LaunchAlertView_Popover4: UIView, LaunchAlertViewProtocol {
             toItem: nil,
             attribute: .notAnAttribute,
             multiplier: 1,
-            constant: 42).isActive = true
+            constant: 48).isActive = true
     }
 }
 
@@ -358,14 +358,16 @@ public class Popover4LaunchAlertViewConfig: LaunchAlertViewConfig {
     public override init(lang: String) {
         super.init(lang: lang)
         style = .popover4
+        popupViewBackColor = .white
         titleFont = UIFont.systemFont(ofSize: 20, weight: .heavy)
         descriptionFont = UIFont.systemFont(ofSize: 16, weight: .medium)
-        titleColor = .white
-        descriptionTextColor = .white
-        imageType = .alertIcon3
+        titleColor = UIColor(r: 24, g: 32, b: 53)
+        descriptionTextColor = UIColor(r: 96, g: 98, b: 104)
+        imageType = .alertIcon4
         buttonTitleColor = .white
-        closeButtonBorderColor = UIColor(r: 253, g: 105, b: 42)
-        closeButtonTitleColor = UIColor(r: 253, g: 105, b: 42)
+        buttonBackColor = UIColor(r: 147, g: 56, b: 237)
+        closeButtonBorderColor = UIColor(r: 147, g: 56, b: 237)
+        closeButtonTitleColor = UIColor(r: 147, g: 56, b: 237)
         closeButtonBorderWidth = 1
     }
 }
