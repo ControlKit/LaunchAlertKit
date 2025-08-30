@@ -358,6 +358,7 @@ public class Popover4LaunchAlertViewConfig: LaunchAlertViewConfig {
     public override init(lang: String) {
         super.init(lang: lang)
         style = .popover4
+        popupViewCornerRadius = 42
         popupViewBackColor = .white
         titleFont = UIFont.systemFont(ofSize: 20, weight: .heavy)
         descriptionFont = UIFont.systemFont(ofSize: 16, weight: .medium)
