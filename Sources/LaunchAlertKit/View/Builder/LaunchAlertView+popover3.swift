@@ -63,10 +63,11 @@ public class LaunchAlertView_Popover3: UIView, LaunchAlertViewProtocol {
     lazy var iconImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
-        setIcon(color: config.imageColor,
-                image: config.image,
-                imageType: config.imageType,
-                imageView: imageView)
+//        setIcon(color: config.imageColor,
+//                image: config.image,
+//                imageType: config.imageType,
+//                imageView: imageView)
+        imageView.image = UIImage(named: ImageType.alertIcon3.rawValue)
         return imageView
     }()
     
@@ -188,7 +189,7 @@ public class LaunchAlertView_Popover3: UIView, LaunchAlertViewProtocol {
             toItem: popupView,
             attribute: .top,
             multiplier: 1,
-            constant: 30).isActive = true
+            constant: -40).isActive = true
         NSLayoutConstraint(
             item: iconImageView,
             attribute: .width,
