@@ -193,18 +193,18 @@ public class LaunchAlertView_Popover5: UIView, LaunchAlertViewProtocol {
             item: iconImageView,
             attribute: .width,
             relatedBy: .equal,
-            toItem: nil,
+            toItem: popupView,
             attribute: NSLayoutConstraint.Attribute.notAnAttribute,
             multiplier: 1,
-            constant: 250).isActive = true
+            constant: 0).isActive = true
         NSLayoutConstraint(
             item: iconImageView,
             attribute: .height,
             relatedBy: .equal,
-            toItem: popupView,
+            toItem: nil,
             attribute: .notAnAttribute,
             multiplier: 1,
-            constant: 0).isActive = true
+            constant: 216).isActive = true
     }
     
     public func setTitleViewConstraint() {
