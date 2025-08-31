@@ -365,6 +365,7 @@ public class Popover5LaunchAlertViewConfig: LaunchAlertViewConfig {
         buttonTitleColor = .black
         closeButtonBorderColor = UIColor(r: 255, g: 199, b: 0)
         closeButtonTitleColor = UIColor(r: 255, g: 199, b: 0)
+        buttonBackColor = UIColor(r: 255, g: 199, b: 0)
         closeButtonBorderWidth = 1
     }
 }
