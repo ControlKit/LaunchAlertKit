@@ -114,7 +114,7 @@ public class LaunchAlertView_Popover3: UIView, LaunchAlertViewProtocol {
         contentView.addSubview(contentBackGroundImageView)
         contentBackGroundImageView.fixInView(contentView)
         addSubview(popupView)
-        popupView.addSubview(iconImageView)
+        addSubview(iconImageView)
         popupView.addSubview(headerTitle)
         popupView.addSubview(descriptionLabel)
         popupView.addSubview(button)
