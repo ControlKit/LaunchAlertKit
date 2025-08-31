@@ -189,13 +189,11 @@ public class LaunchAlertView_Popover5: UIView, LaunchAlertViewProtocol {
             attribute: .top,
             multiplier: 1,
             constant: 30).isActive = true
-        NSLayoutConstraint(
-            item: iconImageView,
-            attribute: .width,
-            relatedBy: .equal,
-            toItem: popupView,
-            attribute: NSLayoutConstraint.Attribute.notAnAttribute,
-            multiplier: 1,
+        iconImageView.leadingAnchor.constraint(
+            equalTo: popupView.leadingAnchor,
+            constant: 0).isActive = true
+        iconImageView.trailingAnchor.constraint(
+            equalTo: popupView.trailingAnchor,
             constant: 0).isActive = true
         NSLayoutConstraint(
             item: iconImageView,
