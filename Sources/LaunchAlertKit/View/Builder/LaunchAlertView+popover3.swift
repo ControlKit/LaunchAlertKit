@@ -67,7 +67,7 @@ public class LaunchAlertView_Popover3: UIView, LaunchAlertViewProtocol {
 //                image: config.image,
 //                imageType: config.imageType,
 //                imageView: imageView)
-        imageView.image = ImageHelper.image(ImageType.alertIcon3.rawValue)
+        imageView.image = ImageHelper.image(ImageType.alertIcon1.rawValue)
         return imageView
     }()
     
