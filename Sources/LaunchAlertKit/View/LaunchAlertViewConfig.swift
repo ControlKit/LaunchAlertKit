@@ -56,5 +56,6 @@ public enum ImageType: String {
     case alertIcon2 = "alert2"
     case alertIcon3 = "alert3"
     case alertIcon4 = "alert4"
+    case alertIcon5 = "alert5"
     case gear = "gear"
 }

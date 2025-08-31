@@ -201,10 +201,10 @@ public class LaunchAlertView_Popover5: UIView, LaunchAlertViewProtocol {
             item: iconImageView,
             attribute: .height,
             relatedBy: .equal,
-            toItem: nil,
+            toItem: popupView,
             attribute: .notAnAttribute,
             multiplier: 1,
-            constant: 186).isActive = true
+            constant: 0).isActive = true
     }
     
     public func setTitleViewConstraint() {
@@ -298,7 +298,7 @@ public class LaunchAlertView_Popover5: UIView, LaunchAlertViewProtocol {
             toItem: nil,
             attribute: NSLayoutConstraint.Attribute.notAnAttribute,
             multiplier: 1,
-            constant: 320).isActive = true
+            constant: 222).isActive = true
         NSLayoutConstraint(
             item: button,
             attribute: .height,
@@ -342,7 +342,7 @@ public class LaunchAlertView_Popover5: UIView, LaunchAlertViewProtocol {
             toItem: nil,
             attribute: NSLayoutConstraint.Attribute.notAnAttribute,
             multiplier: 1,
-            constant: 320).isActive = true
+            constant: 222).isActive = true
         NSLayoutConstraint(
             item: closeButton,
             attribute: .height,
@@ -358,11 +358,12 @@ public class Popover5LaunchAlertViewConfig: LaunchAlertViewConfig {
     public override init(lang: String) {
         super.init(lang: lang)
         style = .popover5
+        contentViewBackColor = .white
         titleFont = UIFont.systemFont(ofSize: 20, weight: .heavy)
         descriptionFont = UIFont.systemFont(ofSize: 16, weight: .medium)
         titleColor = .white
         descriptionTextColor = .white
-        imageType = .alertIcon3
+        imageType = .alertIcon5
         buttonTitleColor = .white
         closeButtonBorderColor = UIColor(r: 253, g: 105, b: 42)
         closeButtonTitleColor = UIColor(r: 253, g: 105, b: 42)
