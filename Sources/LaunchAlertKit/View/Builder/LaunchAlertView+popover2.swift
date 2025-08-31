@@ -188,7 +188,7 @@ public class LaunchAlertView_Popover2: UIView, LaunchAlertViewProtocol {
             toItem: popupView,
             attribute: .top,
             multiplier: 1,
-            constant: 30).isActive = true
+            constant: -40).isActive = true
         NSLayoutConstraint(
             item: iconImageView,
             attribute: .width,
