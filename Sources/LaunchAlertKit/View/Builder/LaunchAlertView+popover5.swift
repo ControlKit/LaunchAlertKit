@@ -168,7 +168,7 @@ public class LaunchAlertView_Popover5: UIView, LaunchAlertViewProtocol {
             toItem: nil,
             attribute: .notAnAttribute,
             multiplier: 1,
-            constant: 500 + height).isActive = true
+            constant: 550 + height).isActive = true
     }
     
     public func setUpdateImageViewConstraint() {
@@ -362,9 +362,9 @@ public class Popover5LaunchAlertViewConfig: LaunchAlertViewConfig {
         titleColor = .white
         descriptionTextColor = .white
         imageType = .alertIcon5
-        buttonTitleColor = .white
-        closeButtonBorderColor = UIColor(r: 253, g: 105, b: 42)
-        closeButtonTitleColor = UIColor(r: 253, g: 105, b: 42)
+        buttonTitleColor = .black
+        closeButtonBorderColor = UIColor(r: 255, g: 199, b: 0)
+        closeButtonTitleColor = UIColor(r: 255, g: 199, b: 0)
         closeButtonBorderWidth = 1
     }
 }
