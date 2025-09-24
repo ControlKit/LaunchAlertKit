@@ -24,9 +24,9 @@ public class AlertService: AlertServiceProtocol {
             if (res as? HTTPURLResponse)?.statusCode == 204 {
                 return nil
             }
-            if let AlertResponse = try? JSONDecoder().decode(AlertResponse.self, from: data) {
-                print(AlertResponse)
-                return AlertResponse
+            if let response = try? JSONDecoder().decode(AlertResponse.self, from: data) {
+                print(response)
+                return response
             } else {
                 print("Invalid Response")
                 return nil

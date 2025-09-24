@@ -4,6 +4,7 @@ import Foundation
 import UIKit
 import Combine
 
+public let launchAlertKit_Version: String = "1.0.0"
 public class LaunchAlertKit: Alertable {
     public let alertService: AlertServiceProtocol!
     public init(alertService: AlertServiceProtocol = AlertService()) {
