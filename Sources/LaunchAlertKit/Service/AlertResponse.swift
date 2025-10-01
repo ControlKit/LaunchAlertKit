@@ -20,7 +20,7 @@ public struct AlertModel: Codable {
     public let link: String?
     public let button_title: AlertLocalString?
     public let cancel_button_title: AlertLocalString?
-    public let sdk_version: Int?
+    public let sdk_version: String?
     public let minimum_version: String?
     public let maximum_version: String?
     public let created_at: String?
