@@ -22,17 +22,19 @@ public class AlertService: AlertServiceProtocol {
             )
             let (data, res) = try await URLSession.shared.data(for: req)
             if (res as? HTTPURLResponse)?.statusCode == 204 {
+                print("Launch Alert Response --> 204")
                 return nil
             }
             if let response = try? JSONDecoder().decode(AlertResponse.self, from: data) {
+                print("Launch Alert Response --> 200")
                 print(response)
                 return response
             } else {
-                print("Invalid Response")
+                print("Launch Alert Response --> Decode Error")
                 return nil
             }
         } catch {
-            print("Failed to Send POST Request \(error)")
+            print("Failed to Launch alert Request \(error)")
             return nil
         }
     }
