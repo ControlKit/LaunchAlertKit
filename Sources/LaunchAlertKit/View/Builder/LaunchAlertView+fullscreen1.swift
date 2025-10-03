@@ -314,6 +314,8 @@ public class FullScreen1LaunchAlertViewConfig: LaunchAlertViewConfig {
     public override init(lang: String) {
         super.init(lang: lang)
         style = .fullscreen1
+        titleColor = .white
+        descriptionTextColor = UIColor(r: 235, g: 235, b: 235)
     }
 }
 
