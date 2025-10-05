@@ -134,12 +134,12 @@ public class LaunchAlertView_Popover1: UIView, LaunchAlertViewProtocol {
     @objc
     func openLink() {
         viewModel.openLink()
-        delegate?.dismiss()
+        delegate?.accept()
     }
     
     @objc
     func dismiss() {
-        delegate?.dismiss()
+        delegate?.cancel()
     }
     
     public func setParentPopupViewConstraint() {
