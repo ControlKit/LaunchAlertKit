@@ -8,7 +8,7 @@
 import Foundation
 public struct AlertRequest {
     public var appId: String
-    public var route: String
+    public var route: String = "https://tauri.ir/api/launch-alert"
     public var applicationVersion: String = Bundle.main.releaseVersionNumber ?? String()
     public var deviceUUID: String = UUID().uuidString
     public var sdkVersion: String = launchAlertKit_Version

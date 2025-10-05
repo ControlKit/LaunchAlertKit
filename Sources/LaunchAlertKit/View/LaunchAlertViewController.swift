@@ -29,11 +29,18 @@ class LaunchAlertViewController: UIViewController {
         view.addSubview(launchAlertView)
         launchAlertView.delegate = self
         launchAlertView.fixInView(view)
+        viewModel.setAction(.view)
     }
 }
 
 extension LaunchAlertViewController: LaunchAlertDelegate {
-    func dismiss() {
+    func accept() {
+        viewModel.setAction(.accepted)
+        self.dismiss(animated: true)
+    }
+    
+    func cancel() {
+        viewModel.setAction(.canceled)
         self.dismiss(animated: true)
     }
 }

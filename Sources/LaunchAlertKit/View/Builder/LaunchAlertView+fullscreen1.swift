@@ -9,7 +9,8 @@ import Foundation
 import UIKit
 
 public protocol LaunchAlertDelegate: AnyObject {
-    func dismiss()
+    func accept()
+    func cancel()
 }
 
 public class LaunchAlertView_FullScreen1: UIView, LaunchAlertViewProtocol {
@@ -127,12 +128,12 @@ public class LaunchAlertView_FullScreen1: UIView, LaunchAlertViewProtocol {
     @objc
     func openLink() {
         viewModel.openLink()
-        delegate?.dismiss()
+        delegate?.accept()
     }
     
     @objc
     func dismiss() {
-        delegate?.dismiss()
+        delegate?.cancel()
     }
     
     public func setUpdateImageViewConstraint() {

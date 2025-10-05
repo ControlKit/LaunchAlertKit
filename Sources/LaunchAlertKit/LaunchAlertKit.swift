@@ -15,13 +15,11 @@ public class LaunchAlertKit: Alertable {
                           modalPresentationStyle: UIModalPresentationStyle = .fullScreen,
                           config: AlertServiceConfig) async {
         Task {
-            let request = AlertRequest(appId: config.appId,
-                                       route: config.route,
-                                       sdkVersion: config.sdkVersion)
+            let request = AlertRequest(appId: config.appId)
             guard let response = try await self.getAlert(request: request) else {
                 return
             }
-            let viewModel = DefaultLaunchAlertViewModel(response: response)
+            let viewModel = DefaultLaunchAlertViewModel(serviceConfig: config, response: response)
             let vc = LaunchAlertViewController(
                 viewModel: viewModel,
                 config: config
