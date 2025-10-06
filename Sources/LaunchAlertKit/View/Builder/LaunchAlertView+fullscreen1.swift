@@ -312,7 +312,7 @@ public class LaunchAlertView_FullScreen1: UIView, LaunchAlertViewProtocol {
 }
 
 public class FullScreen1LaunchAlertViewConfig: LaunchAlertViewConfig {
-    public override init(lang: String) {
+    public override init(lang: CKLanguage) {
         super.init(lang: lang)
         style = .fullscreen1
         titleColor = .white

@@ -39,7 +39,7 @@ public enum LaunchAlertViewStyle {
         }
     }
     
-    public static func getViewConfigWithStyle(style: LaunchAlertViewStyle, lang: String) -> LaunchAlertViewConfig {
+    public static func getViewConfigWithStyle(style: LaunchAlertViewStyle, lang: CKLanguage) -> LaunchAlertViewConfig {
         switch style {
         case .fullscreen1:
             FullScreen1LaunchAlertViewConfig(lang: lang)

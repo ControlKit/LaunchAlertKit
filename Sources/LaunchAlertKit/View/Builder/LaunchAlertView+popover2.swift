@@ -355,7 +355,7 @@ public class LaunchAlertView_Popover2: UIView, LaunchAlertViewProtocol {
 }
 
 public class Popover2LaunchAlertViewConfig: LaunchAlertViewConfig {
-    public override init(lang: String) {
+    public override init(lang: CKLanguage) {
         super.init(lang: lang)
         style = .popover2
         titleFont = UIFont.systemFont(ofSize: 20, weight: .heavy)

@@ -25,7 +25,7 @@ public struct LaunchAlertViewPresenter {
     }
     
     func getLocalizeString(_ localize: AlertLocalString) -> String? {
-        guard let localizeString = localize.first(where: { $0.language == config.lang }) else {
+        guard let localizeString = localize.first(where: { $0.language == config.lang.rawValue }) else {
             if let defaultLang = localize.first {
                 return defaultLang.content
             } else {

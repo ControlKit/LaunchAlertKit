@@ -385,7 +385,7 @@ public class LaunchAlertView_Popover1: UIView, LaunchAlertViewProtocol {
 }
 
 public class Popover1LaunchAlertViewConfig: LaunchAlertViewConfig {
-    public override init(lang: String) {
+    public override init(lang: CKLanguage) {
         super.init(lang: lang)
         style = .popover1
         image = "gear"

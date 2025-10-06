@@ -353,7 +353,7 @@ public class LaunchAlertView_Popover5: UIView, LaunchAlertViewProtocol {
 }
 
 public class Popover5LaunchAlertViewConfig: LaunchAlertViewConfig {
-    public override init(lang: String) {
+    public override init(lang: CKLanguage) {
         super.init(lang: lang)
         style = .popover5
         contentViewBackColor = .white
