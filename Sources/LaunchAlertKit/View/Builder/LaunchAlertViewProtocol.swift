@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import ControlKitBase
 public protocol LaunchAlertViewProtocol: UIView {
     var delegate: LaunchAlertDelegate? { get set }
     func setIcon(color: UIColor?, image: String?, imageType: ImageType, imageView: UIImageView)

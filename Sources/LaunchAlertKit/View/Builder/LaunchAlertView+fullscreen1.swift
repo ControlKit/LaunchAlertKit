@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import ControlKitBase
 
 public protocol LaunchAlertDelegate: AnyObject {
     func accept()
@@ -317,21 +318,5 @@ public class FullScreen1LaunchAlertViewConfig: LaunchAlertViewConfig {
         style = .fullscreen1
         titleColor = .white
         descriptionTextColor = UIColor(r: 235, g: 235, b: 235)
-    }
-}
-
-class ImageHelper {
-    static var resolvedBundle: Bundle {
-#if SWIFT_PACKAGE
-        return Bundle.module
-#else
-        return Bundle(for: self)
-#endif
-    }
-    
-    static func image(_ name: String) -> UIImage? {
-        return UIImage(named: name,
-                       in: resolvedBundle,
-                       compatibleWith: nil)
     }
 }
