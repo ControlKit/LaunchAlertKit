@@ -4,14 +4,22 @@
 //
 //  Created by Maziar Saadatfar on 10/5/25.
 //
+import ControlKitBase
 public protocol AlertActionable {
-    func setAction(_ action: AlertAction)
+    func setAction(_ action: ControlKitAction)
 }
 public extension AlertActionable where Self: LaunchAlertViewModel {
-    func setAction(_ action: AlertAction) {
+    func setAction(_ action: ControlKitAction) {
         Task {
-            let request = ActionRequest(appId: serviceConfig.appId, alertId: self.response.data?.id ?? "", action: action)
-            let _ = try await actionService.action(request: request)
+            var request = ActionRequest(
+                route: .force_update,
+                appId: serviceConfig.appId,
+                sdkVersion: launchAlertKit_Version,
+                action: action,
+                itemId: self.response.data?.id ?? "",
+            )
+            request.extraParameter = "\(request.itemId ?? "")"
+            let _: Result<ActionResponse> = try await actionService.execute(request: request)
         }
     }
 }

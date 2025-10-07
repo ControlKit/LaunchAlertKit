@@ -7,22 +7,22 @@
 
 import Foundation
 import UIKit
-
+import ControlKitBase
 public protocol LaunchAlertViewModel: AlertActionable {
     var response: AlertResponse { get set }
     var serviceConfig: AlertServiceConfig { get set }
-    var actionService: ActionServiceProtocol { get set }
+    var actionService: GenericServiceProtocol { get set }
     func openLink()
 }
 
 public final class DefaultLaunchAlertViewModel: LaunchAlertViewModel {
-    public var actionService: ActionServiceProtocol
+    public var actionService: GenericServiceProtocol
     public var response: AlertResponse
     public var serviceConfig: AlertServiceConfig
     public init(
         serviceConfig: AlertServiceConfig,
         response: AlertResponse,
-        actionService: ActionServiceProtocol = ActionService()
+        actionService: GenericServiceProtocol = GenericService()
     ) {
         self.response = response
         self.actionService = actionService

@@ -6,6 +6,7 @@
 //
 import Foundation
 import UIKit
+import ControlKitBase
 public struct LaunchAlertViewPresenter {
     var config: LaunchAlertViewConfig
     public init(data: AlertModel?, config: LaunchAlertViewConfig) {
@@ -24,7 +25,7 @@ public struct LaunchAlertViewPresenter {
         if let icon = data?.icon { self.config.image = icon }
     }
     
-    func getLocalizeString(_ localize: AlertLocalString) -> String? {
+    func getLocalizeString(_ localize: LocalString) -> String? {
         guard let localizeString = localize.first(where: { $0.language == config.lang.rawValue }) else {
             if let defaultLang = localize.first {
                 return defaultLang.content

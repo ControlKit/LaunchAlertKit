@@ -14,9 +14,16 @@ let package = Package(
             targets: ["LaunchAlertKit"]
         ),
     ],
+    dependencies: [
+        .package(
+            url: "https://github.com/ControlKit/ControlKitBase.git",
+            branch: "main"
+        )
+    ],
     targets: [
         .target(
             name: "LaunchAlertKit",
+            dependencies: ["ControlKitBase"],
             resources: [.process("Resources")]
         ),
         .testTarget(

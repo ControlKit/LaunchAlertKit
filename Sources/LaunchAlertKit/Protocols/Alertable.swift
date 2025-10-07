@@ -6,14 +6,15 @@
 //
 
 import Foundation
+import ControlKitBase
 
 public protocol Alertable: AnyObject {
-    var alertService: AlertServiceProtocol! { get }
-    func getAlert(request: AlertRequest) async throws -> AlertResponse?
+    var alertService: GenericServiceProtocol! { get }
+    func getAlert(request: AlertRequest) async throws -> Result<AlertResponse>?
 }
 
 extension Alertable {
-    public func getAlert(request: AlertRequest) async throws -> AlertResponse? {
-        return try await alertService.getAlert(request: request)
+    public func getAlert(request: AlertRequest) async throws -> Result<AlertResponse>? {
+        return try await alertService.execute(request: request)
     }
 }

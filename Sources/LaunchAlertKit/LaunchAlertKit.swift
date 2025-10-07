@@ -3,11 +3,12 @@
 import Foundation
 import UIKit
 import Combine
+import ControlKitBase
 
 public let launchAlertKit_Version: String = "1.0.0"
 public class LaunchAlertKit: Alertable {
-    public let alertService: AlertServiceProtocol!
-    public init(alertService: AlertServiceProtocol = AlertService()) {
+    public let alertService: GenericServiceProtocol!
+    public init(alertService: GenericServiceProtocol = GenericService()) {
         self.alertService = alertService
     }
     @MainActor
@@ -16,7 +17,7 @@ public class LaunchAlertKit: Alertable {
                           config: AlertServiceConfig) async {
         Task {
             let request = AlertRequest(appId: config.appId)
-            guard let response = try await self.getAlert(request: request) else {
+            guard let response = try await self.getAlert(request: request)?.value else {
                 return
             }
             let viewModel = DefaultLaunchAlertViewModel(serviceConfig: config, response: response)

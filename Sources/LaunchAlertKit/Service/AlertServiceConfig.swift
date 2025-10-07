@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import ControlKitBase
 public struct AlertServiceConfig {
     public init(style: LaunchAlertViewStyle = .fullscreen1,
                 appId: String,
