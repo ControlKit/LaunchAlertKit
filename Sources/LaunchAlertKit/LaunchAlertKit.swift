@@ -5,7 +5,8 @@ import UIKit
 import Combine
 import ControlKitBase
 
-public let launchAlertKit_Version: String = "1.0.0"
+let launchAlertKit_Version: String = "1.0.0"
+let latestLaunchAlertKey: String = "latestLaunchAlertResponseId"
 public class LaunchAlertKit: Alertable {
     public let alertService: GenericServiceProtocol!
     public init(alertService: GenericServiceProtocol = GenericService()) {
@@ -20,7 +21,11 @@ public class LaunchAlertKit: Alertable {
             guard let response = try await self.getAlert(request: request)?.value else {
                 return
             }
+            guard let id = response.data?.id, id > UserDefaults.standard.string(forKey: latestLaunchAlertKey) ?? String() else {
+                return
+            }
             let viewModel = DefaultLaunchAlertViewModel(serviceConfig: config, response: response)
+            viewModel.saveLatestResponseId(id: id)
             let vc = LaunchAlertViewController(
                 viewModel: viewModel,
                 config: config

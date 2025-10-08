@@ -33,5 +33,9 @@ public final class DefaultLaunchAlertViewModel: LaunchAlertViewModel {
             UIApplication.shared.open(urlFinal)
         }
     }
+    
+    public func saveLatestResponseId(id: String) {
+        UserDefaults.standard.set(id, forKey: latestLaunchAlertKey)
+    }
 }
 

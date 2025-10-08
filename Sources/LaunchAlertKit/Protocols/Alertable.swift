@@ -15,6 +15,7 @@ public protocol Alertable: AnyObject {
 
 extension Alertable {
     public func getAlert(request: AlertRequest) async throws -> Result<AlertResponse>? {
-        return try await alertService.execute(request: request)
+        let response : Result<AlertResponse> = try await alertService.execute(request: request)
+        return response
     }
 }
