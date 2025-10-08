@@ -12,7 +12,7 @@ public extension AlertActionable where Self: LaunchAlertViewModel {
     func setAction(_ action: ControlKitAction) {
         Task {
             var request = ActionRequest(
-                route: .force_update,
+                route: .launch_alert,
                 appId: serviceConfig.appId,
                 sdkVersion: launchAlertKit_Version,
                 action: action,
