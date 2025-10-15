@@ -10,15 +10,12 @@ import ControlKitBase
 public struct AlertServiceConfig {
     public init(style: LaunchAlertViewStyle = .fullscreen1,
                 appId: String,
-                language: CKLanguage,
-                version: String) {
+                language: CKLanguage) {
         self.viewConfig = LaunchAlertViewStyle.getViewConfigWithStyle(style: style, lang: language)
         self.appId = appId
         self.language = language
-        self.applicationVersion = version
     }
     public var appId: String
     public var language: CKLanguage
-    public var applicationVersion: String = Bundle.main.releaseVersionNumber ?? String()
     public var viewConfig: LaunchAlertViewConfig
 }
