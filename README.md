@@ -1,4 +1,4 @@
-# LaunchAlertKit
+# LaunchAlertKit <img src='https://github.com/maziar/ReadmeFiles/blob/main/solar_smartphone-update-linear.svg' width='30'/>
 
 A powerful iOS Swift Package for displaying launch alerts with server-side configuration, multiple UI styles, and multilingual support. LaunchAlertKit allows you to show customizable alerts when your app launches, with options to dismiss or navigate to external links.
 
