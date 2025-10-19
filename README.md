@@ -2,6 +2,16 @@
 
 A powerful iOS Swift Package for displaying launch alerts with server-side configuration, multiple UI styles, and multilingual support. LaunchAlertKit allows you to show customizable alerts when your app launches, with options to dismiss or navigate to external links.
 
+## 📋 Technical Specifications
+
+- **Language**: Swift 5.9+
+- **Minimum iOS Version**: iOS 13.0+
+- **Minimum Xcode Version**: Xcode 14.0+
+- **Package Manager**: Swift Package Manager, CocoaPods
+- **License**: MIT License
+- **Repository**: [https://github.com/ControlKit/LaunchAlertKit](https://github.com/ControlKit/LaunchAlertKit)
+- **Android Version**: [https://github.com/ControlKit/LaunchAlertKit-android](https://github.com/ControlKit/LaunchAlertKit-android)
+
 ## 🚀 Features
 
 - **Server-Side Configuration**: Alerts are configured remotely and fetched when the app launches
@@ -32,7 +42,7 @@ Add LaunchAlertKit to your project using Swift Package Manager:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/your-username/LaunchAlertKit.git", from: "1.0.0")
+    .package(url: "https://github.com/ControlKit/LaunchAlertKit.git", from: "1.0.0")
 ]
 ```
 
@@ -250,15 +260,15 @@ LaunchAlertKit follows a clean architecture pattern:
 4. **LaunchAlertViewController**: Manages the alert presentation
 5. **LaunchAlertViewStyle**: Factory for different UI styles
 
+## 🔗 Dependencies
+
+- ControlKitBase: Core networking and utilities
+
 ## 📋 Requirements
 
 - iOS 13.0+
 - Swift 5.9+
 - Xcode 14.0+
-
-## 🔗 Dependencies
-
-- ControlKitBase: Core networking and utilities
 
 ## 📄 License
 
